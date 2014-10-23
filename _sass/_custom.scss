@@ -1,10 +1,45 @@
+.site-header {
+	border-top: none;
+}
+
+.site-title {
+	margin-top: 1rem;
+	font-size: 2rem;
+}
+
+.page-content {
+	> .wrapper {
+		max-width: calc(800px - 30px*2 + 200px);
+		padding-left: 200px;
+	}
+}
+
 .menu {
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	padding: 3rem 2rem;
+	padding: 7rem 2rem;
+	@include media-query(420px) {
+		padding: 10rem 2rem;
+	}
+	> .nav {
+		line-height: 2em;
+		> ul {
+			list-style: none;
+			> li {
+				> a {
+					color: #111;
+				}
+			}
+		}
+	}
 }
 
-.menu > ul {
-	list-style: none;
+.logo {
+	float: left;
+	> a{
+		> img {
+			height: 5rem;
+		}
+	}
 }
