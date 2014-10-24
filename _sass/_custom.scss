@@ -27,7 +27,18 @@
 		> ul {
 			list-style: none;
 			> li {
+				.active {
+					background-color: #E0E0FF;
+				}
+				:hover {
+					background-color: #E0E0FF;
+					text-decoration: none;
+				}
 				> a {
+					display: block;
+					width: 100px;
+					height: 2rem;
+					padding-left: 10px;
 					color: #111;
 				}
 			}
