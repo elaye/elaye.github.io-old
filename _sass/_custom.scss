@@ -1,5 +1,16 @@
+html, body {
+	/* Pattern from http://subtlepatterns.com */
+	background-image: url("/img/brillant.png");
+}
+
 .site-header {
+	height: 75px;
 	border-top: none;
+	background-color: rgba(254, 254, 254, 0.8);
+}
+
+.site-footer {
+	background-color: rgba(254, 254, 254, 0.8);
 }
 
 .site-title {
@@ -8,30 +19,36 @@
 }
 
 .page-content {
+	background-color: rgba(254, 254, 254, 0.5);
 	> .wrapper {
-		max-width: calc(800px - 30px*2 + 200px);
-		padding-left: 200px;
+		background-color: rgba(254, 254, 254, 0.7);
+		padding: 10px;
+		// max-width: calc(800px - 30px*2 + 200px);
+		// padding-left: 200px;
 	}
 }
 
 .menu {
 	position: absolute;
-	top: 0px;
+	top: 76px;
 	left: 0px;
 	padding: 7rem 2rem;
+	padding-top: 2rem;
 	@include media-query(420px) {
 		padding: 10rem 2rem;
 	}
+	background-color: rgba(254, 254, 254, 0.8);
 	> .nav {
 		line-height: 2em;
 		> ul {
 			list-style: none;
 			> li {
+				margin-top: 20px;
 				.active {
 					background-color: #E0E0FF;
 				}
 				:hover {
-					background-color: #E0E0FF;
+					background-color: #EFEFFF;
 					text-decoration: none;
 				}
 				> a {
@@ -51,6 +68,26 @@
 	> a{
 		> img {
 			height: 5rem;
+		}
+	}
+}
+
+ul.tags {
+	list-style: none;
+	li {
+		float: left;
+		width: auto;
+		margin: 2px;
+		:hover {
+			text-decoration: none;
+			color: #505090;
+		}
+		a {
+			padding: 0px 5px;
+			color: #7070B0;
+			border: 2px solid #B0B0FF;
+			border-radius: 5px;
+			background-color: #F0F0FB;		
 		}
 	}
 }
