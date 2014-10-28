@@ -72,8 +72,17 @@ html, body {
 	}
 }
 
+p.post-tags {
+	float: left;
+	margin: 2px;
+	margin-right: 5px;
+	color: #777;
+	font-size: 0.8em;
+}
+
 ul.tags {
 	list-style: none;
+	font-size: 0.8em;
 	li {
 		float: left;
 		width: auto;
@@ -82,12 +91,12 @@ ul.tags {
 			text-decoration: none;
 			color: #505090;
 		}
-		a {
+		// a {
 			padding: 0px 5px;
 			color: #7070B0;
 			border: 2px solid #B0B0FF;
 			border-radius: 5px;
 			background-color: #F0F0FB;		
-		}
+		// }
 	}
 }
