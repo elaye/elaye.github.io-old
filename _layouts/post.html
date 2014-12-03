@@ -5,14 +5,24 @@ layout: default
 
 	<header class="post-header">
 		<h1 class="post-title">{{ page.title }}</h1>
-		<p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-		<p class="post-tags">Tags:</p>{% if page.tags %}
-			<ul class="tags">
-			{% for tag in page.tags %}
-				<li><!-- <a href="#"> -->{{tag}}<!-- </a> --></li>
-			{% endfor %}
-			</ul>
+		
+		{% if page.header-img %}
+			<img src="/img/posts/{{ page.header-img }}">
 		{% endif %}
+		
+		{% if page.tags %}
+			<div class="tags">
+				<p class="post-tags">Tags:</p>
+				<ul class="tags">
+				{% for tag in page.tags %}
+					<li><!-- <a href="#"> -->{{tag}}<!-- </a> --></li>
+				{% endfor %}
+				</ul>
+			</div>
+			<br>
+		{% endif %}
+
+		<div class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</div>
 	</header><br>
 	<hr>
 	<article class="post-content">
