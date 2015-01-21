@@ -1,7 +1,7 @@
 <div class="menu">
 	<nav class="nav">
 		<ul>
-			{% for node in site.pages %}
+			{% for node in site.pages reversed %}
 				{% if node.title %}
 					{% if page.url == node.url %}
 						<li><a class="page-link active" href="{{ node.url | prepend: site.baseurl }}">{{ node.title }}</a></li>

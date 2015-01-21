@@ -15,8 +15,14 @@
 						<i class="fa fa-linkedin-square fa-5x"></i>
 					</a>
 				{% endif %}
-		</div>
 
+				{% if site.email %}
+					<a href="mailto:{{ site.email }}" class="social-link">
+						<i class="fa fa-envelope-square fa-5x"></i>
+					</a>
+				{% endif %}
+		</div>
+<!-- 
 		<div class="footer-col-wrapper">
 			<div class="footer-col  footer-col-1">
 				<ul class="contact-list">
@@ -32,7 +38,7 @@
 			<div class="footer-col  footer-col-3">
 				<p class="text">{{ site.description }}</p>
 			</div>
-		</div>
+		</div> -->
 
 	</div>
 

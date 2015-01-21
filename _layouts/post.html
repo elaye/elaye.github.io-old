@@ -7,28 +7,43 @@ layout: default
 		<h1 class="post-title">{{ page.title }}</h1>
 		
 		{% if page.header-img %}
-			<img src="/img/posts/{{ page.header-img }}">
+			<img src="/img/posts/{{ page.header-img }}" class="post-header-img">
 		{% endif %}
 		
-		{% if page.tags %}
-			<div class="tags">
-				<p class="post-tags">Tags:</p>
-				<ul class="tags">
-				{% for tag in page.tags %}
-					<li><!-- <a href="#"> -->{{tag}}<!-- </a> --></li>
-				{% endfor %}
-				</ul>
+		<div class="post-meta clearfix">
+			<div class="post-tags">
+				{% if page.tags and site.enable_tags == true %}
+					<!-- <div class="tags"> -->
+						<p>Tags:</p>
+						<ul class="tags">
+						{% for tag in page.tags %}
+							<li><!-- <a href="#"> -->{{tag}}<!-- </a> --></li>
+						{% endfor %}
+						</ul>
+					<!-- </div> -->
+					<!-- <br> -->
+				{% endif %}
 			</div>
-			<br>
-		{% endif %}
 
-		<div class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</div>
-	</header><br>
+			<div class="post-date">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</div>
+		</div>
+	</header>
 	<hr>
 	<article class="post-content">
 		{{ content }}
 	</article>
 
-
+	<!-- Disqus -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'elayegithubio';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
 
 </div>

@@ -1,6 +1,6 @@
 # Site settings
 title: Wahey
-email: your-email@domain.com
+email: elaye.github.io@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -13,3 +13,5 @@ linkedin_username: elie-genard
 
 # Build settings
 markdown: kramdown
+
+enable_tags: true

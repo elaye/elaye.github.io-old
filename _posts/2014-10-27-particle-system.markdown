@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Particle system with compute shader"
+title:  "Particle system using compute shader"
 date:   2014-10-27 17:40:00
 categories: openframeworks
 header-img: "particle_system_compute_shader_header.png"
@@ -13,7 +13,7 @@ Particle systems are fascinating. You define a behavior for a particle, you put 
 
 But to apprehend these emerging phenomena you need a lot of particles. That's how I got interested in creating a million particle system. The first program I wrote was very simple. It consisted of a Particle class and a ParticleManager class. The particle manager held all the particles in a vector and updated particles positions and drew them by iterating through this vector. This approach was correct for understanding how to create a particle system but was not very efficient as I could only have around 10 thousand particles at 30fps. 
 
-A first improvment was to store the particles in a VBO and update their positions at each frame. But this only got me a few more thousand particles. The calculation of the particles positions on the CPU and then their transfer to the graphic card was too costly. Finally I found that I could store and update my entire particle system on the graphic card. There are several ways of doing this but I chose to store my particles in a Shader Storage Buffer Object and to update their positions with a compute shader. Then, the SSBO is accessed in the vertex shader to render the particles.
+A first improvement was to store the particles in a VBO and update their positions at each frame. But this only got me a few more thousand particles. The calculation of the particles positions on the CPU and then their transfer to the graphic card was too costly. Finally I found that I could store and update my entire particle system on the graphic card. There are several ways of doing this but I chose to store my particles in a Shader Storage Buffer Object and to update their positions with a compute shader. Then, the SSBO is accessed in the vertex shader to render the particles.
 
 The particles contained in the SSBO are represented using the following structure:
 
@@ -76,7 +76,7 @@ void particleManager::draw(){
 
 <!-- Why not use OpenCL? Using OpenCL needs an installation of additional components, and context sharing between OpenCL and OpenGL can be a bit tricky. Moreover, the calculations are made for a graphical application so it seems natural to use a compute shader. Finally, compute shader can be used directly with openFrameworks in the last version (0.9.0). -->
 
-To animate my particles, I used a basic gravitational interaction between the particles and a moving attractor. According to wikipedia, <em>"[Newton's law of universal gravitation](https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation) states that any two bodies in the universe attract each other with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between them"</em> which results in the following formula:
+To animate my particles, I used a basic gravitational interaction between the particles and a moving attractor. According to Wikipedia, <em>"[Newton's law of universal gravitation](https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation) states that any two bodies in the universe attract each other with a force that is directly proportional to the product of their masses and <strong>inversely proportional to the square of the distance between them</strong>"</em> which results in the following formula:
 
 $$
 	\mathbf{F_{1\rightarrow2}} = G\frac{m_1 m_2}{r^2}\mathbf{u}
@@ -89,6 +89,8 @@ $$G$$ is the gravitational constant, which adjusts the force to describe the act
 $$r$$ is the distance between the two bodies
 
 $$\mathbf{u}$$ is an unitary vector which describes the direction of the force.
+
+The important thing to remember is 
 
 <pre><code>p[gid].acc = -strength/d*dir;
 </code></pre>
@@ -149,6 +151,8 @@ void main(){
 The 'strength' float is used as a parameter to scale the force, it can be seen as the $$ Gm_2 $$ coefficient in the gravitation's law. The constant EPS is used to avoid a division by zero in case the attractor and the particle have the same position.
 
 You can notice that we didn't considered the attraction of the particles on the attractor. I considered that the mass of a particle compared to the mass of the attractor was negligible. However, since there is a huge amount of particles, we could consider the center of mass of the particles cloud and make it interact with the attractor.
+
+This particle system is not physically accurate: Eulerian approach... but it is visually satisfying.
 
 This particle system is really simple and it only considers interactions between the particles and a limited number of interactors, which results in a $$ O(n) $$ complexity. However, if you start to consider inter-particles interactions, this gives you a $$ O(n^2) $$ complexity, reducing significantly the amount of particles you can simulate in your system. There are ways to deal with this, but it will be the subject of a future post.
 
