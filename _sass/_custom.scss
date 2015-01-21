@@ -3,6 +3,7 @@ $dark-grey: #606060;
 $grey: grey;
 $blue: #3A5FAB;
 
+
 html, body {
 	/* Pattern from http://subtlepatterns.com */
 	background-image: url("/img/brillant.png");
@@ -29,6 +30,15 @@ pre {
 	-moz-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
 	-webkit-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
 	box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
+}
+
+.site-title {
+	line-height: 36px;
+	margin-left: 10px;
+	.site-description {
+		font-size: 14px;
+		line-height: 16px;
+	}
 }
 
 .site-footer {
@@ -94,6 +104,34 @@ pre {
 			height: 3.5rem;
 		}
 	}
+}
+
+.hero{
+	position: relative;
+	width: 100%;
+	background-size: cover;
+	height: 200px;
+	.title{
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
+		padding: 5px 0px;
+		background-color: rgba(0, 0, 0, 0.75);
+		color: #FFF;
+		font-size: 22px;
+		text-indent: 10px;
+	}
+	span{
+		float: right;
+		font-size: 14px;
+		margin-right: 10px;
+		padding-top: 7px;
+	}
+}
+
+.hero:hover .title {
+    background-color: rgba(48, 95, 148, 0.8);
+    transition: all 0.1s ease-in;
 }
 
 .post-header {

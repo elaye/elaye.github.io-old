@@ -11,7 +11,14 @@ permalink: /blog/
 	<ul class="post-list">
 		{% for post in site.posts %}
 			<li>
-					<div class="post-meta">
+				<a href="{{ post.url | prepend: site.baseurl }}">
+					<div class="hero" style="background-image: url(/img/posts/{{ post.header-img }});">
+						<div class="title">{{ post.title }}
+							<span>{{ post.date | date: "%b %-d, %Y" }}</span>
+						</div>
+					</div>
+				</a>
+<!-- 					<div class="post-meta">
 						<a class="post-link" style="float:left;" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 						<div class="post-date" style="margin-top: 10px;">{{ post.date | date: "%b %-d, %Y" }}</div>
 					</div>
@@ -19,7 +26,7 @@ permalink: /blog/
 						{% if post.header-img %}
 							<img src="/img/posts/{{ post.header-img }}" class="post-header-img">
 						{% endif %}
-					</a>
+					</a> -->
 			</li>
 		{% endfor %}
 	</ul>
