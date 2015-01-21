@@ -78,11 +78,15 @@ The visualization is a basic particle system. It uses the diabolo and hands posi
 
 
 <div class="figure">
-	<img src="/img/posts/interactive_diabolo_project_particles1.png" alt="Particles image generation">
+	<a href="/img/posts/interactive_diabolo_project_particles1.png" data-lightbox="particles1" alt="Particles image generation">
+		<img src="/img/posts/interactive_diabolo_project_particles1.png" alt="Particles image generation">
+	</a>
 </div>
 
 <div class="figure">
-	<img src="/img/posts/interactive_diabolo_project_particles2.png" alt="Particles image generation">
+	<a href="/img/posts/interactive_diabolo_project_particles2.png" data-lightbox="particles2" alt="Particles image generation">
+		<img src="/img/posts/interactive_diabolo_project_particles2.png" alt="Particles image generation">
+	</a>
 </div>
 
 Conclusion
