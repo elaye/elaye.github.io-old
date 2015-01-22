@@ -99,10 +99,8 @@ pre {
 .logo {
 	float: left;
 	margin-left: -115px;
-	> a{
-		> img {
-			height: 3.5rem;
-		}
+	> img {
+		height: 3.5rem;
 	}
 }
 
@@ -110,7 +108,7 @@ pre {
 	position: relative;
 	width: 100%;
 	background-size: cover;
-	height: 200px;
+	height: 127px;
 	.title{
 		position: absolute;
 		bottom: 0px;
@@ -120,6 +118,7 @@ pre {
 		color: #FFF;
 		font-size: 22px;
 		text-indent: 10px;
+		transition: all 0.25s ease-in;
 	}
 	span{
 		float: right;
@@ -131,7 +130,6 @@ pre {
 
 .hero:hover .title {
     background-color: rgba(48, 95, 148, 0.8);
-    transition: all 0.1s ease-in;
 }
 
 .post-header {
@@ -223,6 +221,7 @@ a.social-link{
 	margin-right: -webkit-calc( (800px / 6) - 2.5em - 4px);
 	margin-right: calc( (800px / 6) - 2.5em - 4px);
 	color: $grey;
+	transition: all 0.25s ease-in;
 }
 
 a:hover{
