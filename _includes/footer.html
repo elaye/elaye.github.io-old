@@ -21,6 +21,12 @@
 						<i class="fa fa-envelope-square fa-5x"></i>
 					</a>
 				{% endif %}
+
+				{% if site.rss %}
+					<a href="{{ "/feed.xml" | prepend: site.baseurl }}" class="social-link">
+						<i class="fa fa-rss-square fa-5x"></i>
+					</a>
+				{% endif %}
 		</div>
 <!-- 
 		<div class="footer-col-wrapper">

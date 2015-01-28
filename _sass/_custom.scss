@@ -213,20 +213,35 @@ ul.tags {
 	}
 }
 
-a.social-link{
-	display: block;
-	float: left;
-	margin-left: -webkit-calc( (800px / 6) - 2.5em - 4px);
-	margin-left: calc( (800px / 6) - 2.5em - 4px);
-	margin-right: -webkit-calc( (800px / 6) - 2.5em - 4px);
-	margin-right: calc( (800px / 6) - 2.5em - 4px);
-	color: $grey;
-	transition: all 0.25s ease-in;
-}
-
 a:hover{
 	text-decoration: none;
 	color: $blue;
+}
+
+a.social-link{
+	display: block;
+	float: left;
+	margin-left: -webkit-calc( (800px / 5) - 4em);
+	margin-left: calc( (800px / 5) - 4em);
+	// margin-right: -webkit-calc( (800px / 4) - 2.5em - 4px);
+	// margin-right: calc( (800px / 4) - 2.5em - 4px);
+	color: $grey;
+	transition: all 0.25s ease-in;
+	:hover{
+		color: $blue;
+	}
+	&:hover i.fa-github-square {
+		color: black;
+	}
+	&:hover i.fa-linkedin-square {
+		color: #0977B5;
+	}
+	&:hover i.fa-envelope-square {
+		color: #39A83A;
+	}
+	&:hover i.fa-rss-square {
+		color: #F99C39;
+	}
 }
 
 .site-nav{
@@ -244,6 +259,14 @@ a.page-link:hover{
 
 .about-home{
 	height: 125px;
+	>.self{
+		float: left;
+		margin: 10px;
+	}
+}
+
+.about{
+	// height: 125px;
 	>.self{
 		float: left;
 		margin: 10px;
