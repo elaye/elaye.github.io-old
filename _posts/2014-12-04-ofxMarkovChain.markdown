@@ -7,10 +7,29 @@ header-img: "ofxMarkovChain_header.png"
 tags: [openFrameworks, ofxAddon, Markov chain]
 ---
 
-[Markov chain](https://en.wikipedia.org/wiki/Markov_chain)
+<em>Code available at Github: </em>[<em>ofxMarkovChain</em> <i class="fa fa-github"></i>](https://github.com/elaye/ofxMarkovChain)
+<hr>
 
-I recently developped an addon for openFrameworks
+A [Markov chain](https://en.wikipedia.org/wiki/Markov_chain) is a mathematical system that includes a certain number of states. The transition from one state to another is determined by a probability. An interesting property of Markov chains is that the next transition only depends on the current state, thus making memoryless. Here is a state diagram of a simple Markov chain with 2 states:
 
-State machine with random transitions, according to probability coefficients
+<div class="figure">
+	<img src="/img/posts/ofxMarkovChain_markov_chain.png" alt="Markov chain">
+</div>
+<br>
 
--> for systems with many states
+If the system is in the state $$A$$, then the probability to stay in that state is $$0.3$$ and the probability to be in state $$B$$ is $$0.7$$. Now, this system can be represented as a matrix:
+
+$$
+	P = \begin{bmatrix}
+0.3 & 0.7 \\
+0.9 & 0.1
+\end{bmatrix}
+$$
+
+You can notice that in order for the Markov chain to be coherent, the sum of the coefficients of each row of the matrix must be equal to $$1$$. 
+
+ofxMarkovChain is an addon for openFrameworks that allows you to use Markov chains in a simple way. An example provided with this addon is a random walker. The walker uses a Markov chain to choose in which direction to go next. The Markov chain has 4 states, each state corresponding to a direction: up, down, left or right. 
+
+<div class="figure">
+	<img src="/img/posts/ofxMarkovChain_random_walker.png" alt="Random walker">
+</div>
