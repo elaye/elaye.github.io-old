@@ -7,8 +7,10 @@ url: "http://elaye.github.io" # the base hostname & protocol for your site
 # twitter_username: jekyllrb
 github_username:  elaye
 linkedin_username: elie-genard
+rss: true
 
 # Build settings
 markdown: kramdown
 
 enable_tags: true
+enable_comments: false
