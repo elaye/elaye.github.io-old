@@ -61,41 +61,6 @@ pre {
 	}
 }
 
-// .menu {
-// 	position: absolute;
-// 	top: 76px;
-// 	left: 0px;
-// 	padding: 7rem 2rem;
-// 	padding-top: 2rem;
-// 	@include media-query(420px) {
-// 		padding: 10rem 2rem;
-// 	}
-// 	background-color: rgba(254, 254, 254, 0.8);
-// 	> .nav {
-// 		line-height: 2em;
-// 		> ul {
-// 			list-style: none;
-// 			> li {
-// 				margin-top: 20px;
-// 				.active {
-// 					background-color: #E0E0FF;
-// 				}
-// 				:hover {
-// 					background-color: #EFEFFF;
-// 					text-decoration: none;
-// 				}
-// 				> a {
-// 					display: block;
-// 					width: 100px;
-// 					height: 2rem;
-// 					padding-left: 10px;
-// 					color: #111;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
-
 .logo {
 	float: left;
 	margin-left: -115px;
@@ -151,11 +116,6 @@ pre {
 	margin-top: 10px;
 }
 
-// .post-meta:after {
-// 	clear: both;
-// }
-
-
 .post-tags {
 	margin-top: 7px;
 	margin-right: -5px;
@@ -167,13 +127,6 @@ pre {
 		margin-right: 5px;
 	}
 }
-
-// .post-img {
-// 	display: block;
-// 	max-width: 600px;
-// 	margin-left: auto;
-// 	margin-right: auto;	
-// }
 
 .figure {
 	margin-bottom: 10px;
@@ -223,24 +176,24 @@ a.social-link{
 	float: left;
 	margin-left: -webkit-calc( (800px / 5) - 4em);
 	margin-left: calc( (800px / 5) - 4em);
-	// margin-right: -webkit-calc( (800px / 4) - 2.5em - 4px);
-	// margin-right: calc( (800px / 4) - 2.5em - 4px);
 	color: $grey;
-	transition: all 0.25s ease-in;
-	:hover{
-		color: $blue;
+	i {
+		transition: all 0.5s ease-in;
 	}
-	&:hover i.fa-github-square {
-		color: black;
-	}
-	&:hover i.fa-linkedin-square {
-		color: #0977B5;
-	}
-	&:hover i.fa-envelope-square {
-		color: #39A83A;
-	}
-	&:hover i.fa-rss-square {
-		color: #F99C39;
+	&:hover i{
+		transition: all 0.25s ease-in;
+		&.fa-github-square {
+			color: black;
+		}
+		&.fa-linkedin-square {
+			color: #0977B5;
+		}
+		&.fa-envelope-square {
+			color: #39A83A;
+		}
+		&.fa-rss-square {
+			color: #F99C39;
+		}
 	}
 }
 
