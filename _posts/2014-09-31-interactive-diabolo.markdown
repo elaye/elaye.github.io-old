@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Interactive diabolo project"
+title:  "Interactive diabolo"
 date:   2014-09-31 14:00:00
 categories: openframeworks
-header-img: "interactive_diabolo_project_header.png"
+header-img: "interactive_diabolo_header.png"
 tags: [openFrameworks, particle system, interactive, diabolo, SuperCollider]
 ---
 
