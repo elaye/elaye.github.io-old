@@ -21,7 +21,7 @@ The juggler makes a diabolo trick with a combination of movements of the sticks 
 To achieve this trick recognition, we needed a way for tracking the movements of the diabolo and the sticks.
 
 <div class="figure">
-	<img src="/img/posts/interactive_diabolo_project_tracking_diagram.png" alt="Tracking diagram">
+	<img src="/img/posts/interactive_diabolo_tracking_diagram.png" alt="Tracking diagram">
 	<p>Tracking program diagram</p>
 </div>
 
@@ -47,7 +47,7 @@ That's why we used a sequencer. Thereby, a trick could only be detected if it wa
 Sequencer
 
 <div class="figure">
-	<img src="/img/posts/interactive_diabolo_project_sequencer.png" alt="Sequencer">
+	<img src="/img/posts/interactive_diabolo_sequencer.png" alt="Sequencer">
 	<p>Sequencer screenshot</p>
 </div>
 
@@ -70,7 +70,7 @@ The particles were rendered with an additive blending as it is a good way of vis
 The visualization program receives the positions of the hands and the diabolo sent from the tracking program via OSC. The positions of the hands are materialized with two blue discs, and the diabolo with a red disc. The particles are able to move between the diabolo disc and the two hands discs as shown below:
 
 <div class="figure">
-	<img src="/img/posts/interactive_diabolo_project_visualization.png" alt="Particles visualization">
+	<img src="/img/posts/interactive_diabolo_visualization.png" alt="Particles visualization">
 	<p>Particles visualization principle</p>
 </div>
 
@@ -78,14 +78,14 @@ The visualization is a basic particle system. It uses the diabolo and hands posi
 
 
 <div class="figure">
-	<a href="/img/posts/interactive_diabolo_project_particles1.png" data-lightbox="particles1" alt="Particles image generation">
-		<img src="/img/posts/interactive_diabolo_project_particles1.png" alt="Particles image generation">
+	<a href="/img/posts/interactive_diabolo_particles1.png" data-lightbox="particles1" alt="Particles image generation">
+		<img src="/img/posts/interactive_diabolo_particles1.png" alt="Particles image generation">
 	</a>
 </div>
 
 <div class="figure">
-	<a href="/img/posts/interactive_diabolo_project_particles2.png" data-lightbox="particles2" alt="Particles image generation">
-		<img src="/img/posts/interactive_diabolo_project_particles2.png" alt="Particles image generation">
+	<a href="/img/posts/interactive_diabolo_particles2.png" data-lightbox="particles2" alt="Particles image generation">
+		<img src="/img/posts/interactive_diabolo_particles2.png" alt="Particles image generation">
 	</a>
 </div>
 
