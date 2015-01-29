@@ -3,7 +3,7 @@ layout: post
 title:  "Interactive diabolo"
 date:   2014-09-31 14:00:00
 categories: openframeworks
-header-img: "interactive_diabolo_header.png"
+header-img: "interactive_diabolo_header2.png"
 tags: [openFrameworks, particle system, interactive, diabolo, SuperCollider]
 ---
 
@@ -16,66 +16,68 @@ Tracking program
 
 The tracking program was in charge of recognizing the trick made by the juggler and sending it to the sound and image generation programs. 
 
-The juggler makes a diabolo trick with a combination of movements of the sticks causing the diabolo to have a particular movement. However, a diabolo trick is not only a particular movement of the diabolo, you have also to consider the movements of the sticks and the juggler. 
-
-To achieve this trick recognition, we needed a way for tracking the movements of the diabolo and the sticks.
-
-<div class="figure">
-	<img src="/img/posts/interactive_diabolo_tracking_diagram.png" alt="Tracking diagram">
-	<p>Tracking program diagram</p>
-</div>
-
 ### Diabolo and hands tracking
 
-This is probably the part that took us the most time, testing and searching for a way of tracking the positions of the diabolo and the hands of the juggler. 
+The juggler makes a diabolo trick with a combination of movements of the sticks causing the diabolo to have a particular movement. However, a diabolo trick is not only a particular movement of the diabolo, you have also to consider the movements of the sticks and the juggler. 
 
-First, inspired by Johnny Chung Lee's [Wiimote tracking system](http://johnnylee.net/projects/wii/) we attached infrared LEDs to the diabolo and the end of the sticks and tracked them with a Wiimote. The tracking was very nice and fluid, but unfortunately there was spatial limitations that were too important: the LEDs emission cone and the Wiimote's reception cone were too narrow. It means that the sticks and the diabolo had to point to the Wiimote to be tracked, which is impossible if you want to do interesting tricks with the diabolo. Moreover, the width and height of the space where the tracking was correct was too small comparing to the space needed for doing diabolo tricks.
+To achieve this trick recognition, we needed a way of tracking the movements of the diabolo and the sticks.
+This is probably the part that took us the most time. 
 
-So we needed to find another method for the tracking. 
+First, inspired by Johnny Chung Lee's [Wiimote tracking system][johnnylee] we attached infrared LEDs to the diabolo and to the end of the sticks and tracked them with a Wiimote. The tracking was very nice and fluid, but unfortunately there was spatial limitations that were too important: the LEDs emission cone and the Wiimote's reception cone were too narrow. It means that the sticks and the diabolo had to point to the Wiimote to be tracked, which is impossible if you want to do interesting tricks with the diabolo. Moreover, the width and height of the space where the tracking was correct was too small comparing to the space needed for doing diabolo tricks.
 
-First, we wanted to track the end of the sticks, which are the most relevant moving parts during a diabolo trick, but it was difficult and we had little time. So we decided to track the hands of the juggler. It was a relevant approximation for basic tricks.
+We realized it would be difficult to track the end of the sticks with the time and budget we had, so we chose to track the hands of the juggler instead. Although the movement of the sticks is characteristic of a diabolo trick, we found that tracking the movements of the hands was relevant enough for the recognition of basic tricks.
 
-OpenNI for hands / Color tracking with jitter for diabolo
+The tracking of the hands was made using a Kinect lent by one of our professors and OpenNI. As the Kinect includes a RGB camera, we also used it to track the diabolo with a simple color tracking.
 
 
 ### Juggling trick recognition
 
-The trick recognition was, well, tricky. 
+Thanks to the Kinect, we could track the position of the diabolo and the hands of the juggler in real-time. The trick recognition consisted in determining the trick made by the juggler only knowing the positions of its hands and the diabolo, and it was a bit, well, tricky.
 
+We selected a limited number of tricks that we would want to recognize: vertical acceleration, horizontal acceleration (side whips), leg satellite arm satellite and elevator.
+We started with simple filters to recognize these tricks. While it worked fine for some tricks (like accelerations), it has proved to be very difficult for others more complex, like satellites.
+
+For these tricks we used [dynamic time warping][DTW] with the [Gesture Recognition Toolkit][GRT] which is an open-source, C++ machine learning library designed for real-time gesture recognition. We made datasets of the tricks we wanted to recognize and fed them to GRT who was then able to tell us what trick we were doing in real-time.
+
+Although our trick recognition worked, we had interferences between tricks that would compromise an elegant sound and image generation downstream. 
 That's why we used a sequencer. Thereby, a trick could only be detected if it was programmed in the sequencer.
 
-Sequencer
 
 <div class="figure">
 	<img src="/img/posts/interactive_diabolo_sequencer.png" alt="Sequencer">
 	<p>Sequencer screenshot</p>
 </div>
 
+The sequencer waits for the currently programmed trick to be recognized and when it is, it fires an event that goes to the sound and image generation programs via OSC. Then the sequencer jumps to the next programmed trick and waits for it.
+
+Below is a diagram of the achitecture of the tracking program:
+
+<div class="figure">
+	<img src="/img/posts/interactive_diabolo_tracking_diagram.png" alt="Tracking diagram">
+	<p>Tracking program architecture</p>
+</div>
+
 Sound and image generation
 ----------------
+
+Now that we had a good tracking of the diabolo and the hands, we could generate sound and images using the coordinates and events sent by the tracking program.
 
 ### Sound generation
 
 The sound generation was done using SuperCollider. We had several instruments that were triggered and modulated according to the events sent via OSC from the tracking program. 
+For instance:
 
- This part was developed by Thomas Moncond'huy so I will not enter the specifics of it. 
+* a [ratchet][ratchet] noise was played as the diabolo was rotating around the leg of the juggler
+* a [drone][drone] effect was played during the elevator trick and the pitch of the drone was mapped to the elevation of the diabolo
+* a percussive sound was played at each stroke during acceleration phases
 
 ### Image generation
 
-
 The idea of the visualization was to materialize the interaction that the juggler could feel with the diabolo. We rapidly chose to use a particle system because it was easy to develop and fun to play with.
 
-The particles were rendered with an additive blending as it is a good way of visualizing the particle density (higher density, brighter color). Two post processing effects were added: a trail to the particles using an FBO and a glowing effect using the [ofxPostProcessing](https://github.com/neilmendoza/ofxPostProcessing) addon.
+The particles were rendered with an additive blending as it is a good way of visualizing the particle density (higher density, brighter color). Two post processing effects were added: a trail to the particles using an FBO and a glowing effect using the [ofxPostProcessing][ofxPostProcessing] addon.
 
-The visualization program receives the positions of the hands and the diabolo sent from the tracking program via OSC. The positions of the hands are materialized with two blue discs, and the diabolo with a red disc. The particles are able to move between the diabolo disc and the two hands discs as shown below:
-
-<div class="figure">
-	<img src="/img/posts/interactive_diabolo_visualization.png" alt="Particles visualization">
-	<p>Particles visualization principle</p>
-</div>
-
-The visualization is a basic particle system. It uses the diabolo and hands positions sent from the tracking program via OSC and map them to particle attractors. There are 3 attractors, one for each hand and one for the diabolo.
-
+The visualization program receives the positions of the hands and the diabolo sent from the tracking program via OSC. The positions of the hands are materialized with two blue discs, and the diabolo with a red disc. The particles are able to move between the diabolo disc and the two hands discs. The images shown below are screenshots of the actual image generation:
 
 <div class="figure">
 	<a href="/img/posts/interactive_diabolo_particles1.png" data-lightbox="particles1" alt="Particles image generation">
@@ -92,8 +94,25 @@ The visualization is a basic particle system. It uses the diabolo and hands posi
 Conclusion
 ----------
 
+
+
+I put the code of the project on github ([AST_diabolo_tracking][AST_diabolo_tracking] and [AST_diabolo_particles][AST_diabolo_particles]) for archive purposes. Although it should still work, the code needs a good cleaning and refactoring but I can't do it a the moment as I don't have the equipement to make it work anymore.
+
+As we spent a lot of time getting the tracking right, we had little time to do the sound and image generation although it was the funniest part of the project.
+
+
 very fun to do
 oF on a real project
 lot of improvments
 - better trick detection (remove sequencer)
 - events in image generation
+
+
+[johnnylee]: http://johnnylee.net/projects/wii/
+[DTW]: https://en.wikipedia.org/wiki/Dynamic_time_warping
+[GRT]: https://github.com/nickgillian/grt
+[ratchet]: https://en.wikipedia.org/wiki/Ratchet_%28instrument%29
+[drone]: https://en.wikipedia.org/wiki/Drone_%28music%29
+[ofxPostProcessing]: https://github.com/neilmendoza/ofxPostProcessing
+[AST_diabolo_particles]: https://github.com/elaye/AST_diabolo_particles
+[AST_diabolo_tracking]: https://github.com/elaye/AST_diabolo_tracking
