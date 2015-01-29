@@ -1,0 +1,22 @@
+.about-home{
+	height: 125px;
+	>.self{
+		float: left;
+		margin: 10px;
+	}
+}
+
+.about{
+	// height: 125px;
+	>.self{
+		float: left;
+		margin: 10px;
+	}
+}
+
+.self{
+	width: 125px;
+	height: 125px;
+	margin-left: auto;
+	margin-right: auto;
+}

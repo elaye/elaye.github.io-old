@@ -1,0 +1,27 @@
+html, body {
+	/* Pattern from http://subtlepatterns.com */
+	background-image: url("/img/brillant.png");
+}
+
+strong {
+	font-weight: 600;
+}
+
+hr {
+	border: 1px solid #EEE;
+	margin-bottom: 10px;
+}
+
+pre {
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;	
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
