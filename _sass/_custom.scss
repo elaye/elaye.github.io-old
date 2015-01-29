@@ -24,6 +24,16 @@ pre {
 	tab-size: 2;	
 }
 
+ul {
+	list-style-type: none;
+	li:before {    
+		font-family: 'FontAwesome';
+		content: '\f0a3';
+		margin:0 5px 0 -15px;
+		color: $grey;
+	}
+}
+
 .site-header {
 	border-top: none;
 	background-color: rgba(254, 254, 254, 0.95);
@@ -74,6 +84,7 @@ pre {
 	width: 100%;
 	background-size: cover;
 	height: 127px;
+	// height: 200px;
 	.title{
 		position: absolute;
 		bottom: 0px;
@@ -149,10 +160,15 @@ ul.tags {
 	font-size: 0.8em;
 	margin-left: 5px;
 	li {
+		list-style: none;
 		float: left;
 		width: auto;
 		margin: 2px;
-		:hover {
+		&:before {
+			content: '';
+			margin: 0px;			
+		}
+		&:hover {
 			text-decoration: none;
 			color: #505090;
 		}
@@ -197,6 +213,10 @@ a.social-link{
 	}
 }
 
+a.page-link:hover{
+	color: $blue;
+}
+
 .site-nav{
 	a.page-link{
 		font-weight: bold;
@@ -206,9 +226,6 @@ a.social-link{
 	}
 }
 
-a.page-link:hover{
-	color: $blue;
-}
 
 .about-home{
 	height: 125px;
