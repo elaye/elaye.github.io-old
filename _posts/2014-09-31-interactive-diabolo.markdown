@@ -18,17 +18,16 @@ The tracking program was in charge of recognizing the trick made by the juggler 
 
 ### Diabolo and hands tracking
 
-The juggler makes a diabolo trick with a combination of movements of the sticks causing the diabolo to have a particular movement. However, a diabolo trick is not only a particular movement of the diabolo, you have also to consider the movements of the sticks and the juggler. 
+The juggler makes a diabolo trick with a combination of movements of the sticks causing the diabolo to have a particular movement. However, a diabolo trick is not only a particular movement of the diabolo, you have also to consider the movements of the sticks and sometimes the juggler. 
 
 To achieve this trick recognition, we needed a way of tracking the movements of the diabolo and the sticks.
 This is probably the part that took us the most time. 
 
 First, inspired by Johnny Chung Lee's [Wiimote tracking system][johnnylee] we attached infrared LEDs to the diabolo and to the end of the sticks and tracked them with a Wiimote. The tracking was very nice and fluid, but unfortunately there was spatial limitations that were too important: the LEDs emission cone and the Wiimote's reception cone were too narrow. It means that the sticks and the diabolo had to point to the Wiimote to be tracked, which is impossible if you want to do interesting tricks with the diabolo. Moreover, the width and height of the space where the tracking was correct was too small comparing to the space needed for doing diabolo tricks.
 
-We realized it would be difficult to track the end of the sticks with the time and budget we had, so we chose to track the hands of the juggler instead. Although the movement of the sticks is characteristic of a diabolo trick, we found that tracking the movements of the hands was relevant enough for the recognition of basic tricks.
+We realized it would be difficult to track the sticks with the time and budget we had, so we chose to track the hands of the juggler instead. Although the movement of the sticks is characteristic of a diabolo trick, we found that tracking the movements of the hands was relevant enough for the recognition of basic tricks.
 
 The tracking of the hands was made using a Kinect lent by one of our professors and OpenNI. As the Kinect includes a RGB camera, we also used it to track the diabolo with a simple color tracking.
-
 
 ### Juggling trick recognition
 
@@ -41,7 +40,6 @@ For these tricks we used [dynamic time warping][DTW] with the [Gesture Recogniti
 
 Although our trick recognition worked, we had interferences between tricks that would compromise an elegant sound and image generation downstream. 
 That's why we used a sequencer. Thereby, a trick could only be detected if it was programmed in the sequencer.
-
 
 <div class="figure">
 	<img src="/img/posts/interactive_diabolo_sequencer.png" alt="Sequencer">
@@ -94,18 +92,12 @@ The visualization program receives the positions of the hands and the diabolo se
 Conclusion
 ----------
 
+We finished the project in time and everything worked well. However, a lot of improvements could be done. An important part would be removing the sequencer in the tracking program, this means a better trick recognition and a better tracking. A way of improving the tracking would be to track the sticks directly maybe using IMU sensors. A better tracking of the diabolo would be necessary as well, although the color tracking works fine with the good lighting conditions.
 
+As we spent a lot of time getting the tracking right, we had little time to do the sound and image generation although it was the funniest part of the project. The particle system is very basic and it would be fun to add events to it for instance, an explosion when a particular trick is achieved.
 
-I put the code of the project on github ([AST_diabolo_tracking][AST_diabolo_tracking] and [AST_diabolo_particles][AST_diabolo_particles]) for archive purposes. Although it should still work, the code needs a good cleaning and refactoring but I can't do it a the moment as I don't have the equipement to make it work anymore.
-
-As we spent a lot of time getting the tracking right, we had little time to do the sound and image generation although it was the funniest part of the project.
-
-
-very fun to do
-oF on a real project
-lot of improvments
-- better trick detection (remove sequencer)
-- events in image generation
+If I'd have to redo it, it would probably be quite different as I know openFrameworks a lot better and I improved my programming skills since then.
+Anyway, I still put the code of the project on github ([AST_diabolo_tracking][AST_diabolo_tracking] and [AST_diabolo_particles][AST_diabolo_particles]) for archive purposes. Although it should still work, the code needs a good cleaning and refactoring but I can't do it a the moment as I don't have the equipement to make it work anymore.
 
 
 [johnnylee]: http://johnnylee.net/projects/wii/
