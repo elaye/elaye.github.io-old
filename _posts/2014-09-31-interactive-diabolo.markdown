@@ -23,7 +23,7 @@ The juggler makes a diabolo trick with a combination of movements of the sticks 
 To achieve this trick recognition, we needed a way of tracking the movements of the diabolo and the sticks.
 This is probably the part that took us the most time. 
 
-First, inspired by Johnny Chung Lee's [Wiimote tracking system][johnnylee] we attached infrared LEDs to the diabolo and to the end of the sticks and tracked them with a Wiimote. The tracking was very nice and fluid, but unfortunately there was spatial limitations that were too important: the LEDs emission cone and the Wiimote's reception cone were too narrow. It means that the sticks and the diabolo had to point to the Wiimote to be tracked, which is impossible if you want to do interesting tricks with the diabolo. Moreover, the width and height of the space where the tracking was correct was too small comparing to the space needed for doing diabolo tricks.
+First, inspired by Johnny Chung Lee's [Wiimote tracking system][johnnylee]{:target="_blank"} we attached infrared LEDs to the diabolo and to the end of the sticks and tracked them with a Wiimote. The tracking was very nice and fluid, but unfortunately there was spatial limitations that were too important: the LEDs emission cone and the Wiimote's reception cone were too narrow. It means that the sticks and the diabolo had to point to the Wiimote to be tracked, which is impossible if you want to do interesting tricks with the diabolo. Moreover, the width and height of the space where the tracking was correct was too small comparing to the space needed for doing diabolo tricks.
 
 We realized it would be difficult to track the sticks with the time and budget we had, so we chose to track the hands of the juggler instead. Although the movement of the sticks is characteristic of a diabolo trick, we found that tracking the movements of the hands was relevant enough for the recognition of basic tricks.
 
@@ -36,7 +36,7 @@ Thanks to the Kinect, we could track the position of the diabolo and the hands o
 We selected a limited number of tricks that we would want to recognize: vertical acceleration, horizontal acceleration (side whips), leg satellite arm satellite and elevator.
 We started with simple filters to recognize these tricks. While it worked fine for some tricks (like accelerations), it has proved to be very difficult for others more complex, like satellites.
 
-For these tricks we used [dynamic time warping][DTW] with the [Gesture Recognition Toolkit][GRT] which is an open-source, C++ machine learning library designed for real-time gesture recognition. We made datasets of the tricks we wanted to recognize and fed them to GRT who was then able to tell us what trick we were doing in real-time.
+For these tricks we used [dynamic time warping][DTW]{:target="_blank"} with the [Gesture Recognition Toolkit][GRT]{:target="_blank"} which is an open-source, C++ machine learning library designed for real-time gesture recognition. We made datasets of the tricks we wanted to recognize and fed them to GRT who was then able to tell us what trick we were doing in real-time.
 
 Although our trick recognition worked, we had interferences between tricks that would compromise an elegant sound and image generation downstream. 
 That's why we used a sequencer. Thereby, a trick could only be detected if it was programmed in the sequencer.
@@ -65,15 +65,15 @@ Now that we had a good tracking of the diabolo and the hands, we could generate 
 The sound generation was done using SuperCollider. We had several instruments that were triggered and modulated according to the events sent via OSC from the tracking program. 
 For instance:
 
-* a [ratchet][ratchet] noise was played as the diabolo was rotating around the leg of the juggler
-* a [drone][drone] effect was played during the elevator trick and the pitch of the drone was mapped to the elevation of the diabolo
+* a [ratchet][ratchet]{:target="_blank"} noise was played as the diabolo was rotating around the leg of the juggler
+* a [drone][drone]{:target="_blank"} effect was played during the elevator trick and the pitch of the drone was mapped to the elevation of the diabolo
 * a percussive sound was played at each stroke during acceleration phases
 
 ### Image generation
 
 The idea of the visualization was to materialize the interaction that the juggler could feel with the diabolo. We rapidly chose to use a particle system because it was easy to develop and fun to play with.
 
-The particles were rendered with an additive blending as it is a good way of visualizing the particle density (higher density, brighter color). Two post processing effects were added: a trail to the particles using an FBO and a glowing effect using the [ofxPostProcessing][ofxPostProcessing] addon.
+The particles were rendered with an additive blending as it is a good way of visualizing the particle density (higher density, brighter color). Two post processing effects were added: a trail to the particles using an FBO and a glowing effect using the [ofxPostProcessing][ofxPostProcessing]{:target="_blank"} addon.
 
 The visualization program receives the positions of the hands and the diabolo sent from the tracking program via OSC. The positions of the hands are materialized with two blue discs, and the diabolo with a red disc. The particles are able to move between the diabolo disc and the two hands discs. The images shown below are screenshots of the actual image generation:
 
@@ -97,7 +97,7 @@ We finished the project in time and everything worked well. However, a lot of im
 As we spent a lot of time getting the tracking right, we had little time to do the sound and image generation although it was the funniest part of the project. The particle system is very basic and it would be fun to add events to it for instance, an explosion when a particular trick is achieved.
 
 If I'd have to redo it, it would probably be quite different as I know openFrameworks a lot better and I improved my programming skills since then.
-Anyway, I still put the code of the project on github ([AST_diabolo_tracking][AST_diabolo_tracking] and [AST_diabolo_particles][AST_diabolo_particles]) for archive purposes. Although it should still work, the code needs a good cleaning and refactoring but I can't do it a the moment as I don't have the equipement to make it work anymore.
+Anyway, I still put the code of the project on github ([AST_diabolo_tracking][AST_diabolo_tracking]{:target="_blank"} and [AST_diabolo_particles][AST_diabolo_particles]{:target="_blank"}) for archive purposes. Although it should still work, the code needs a good cleaning and refactoring but I can't do it a the moment as I don't have the equipement to make it work anymore.
 
 
 [johnnylee]: http://johnnylee.net/projects/wii/
