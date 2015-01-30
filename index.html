@@ -4,7 +4,21 @@ layout: default
 
 <div class="home">
 
-	<div class="about-home">
+	<ul class="post-list">
+		{% for post in site.posts %}
+			<li>
+				<a href="{{ post.url | prepend: site.baseurl }}">
+					<div class="hero" style="background-image: url(/img/posts/{{ post.header-img }});">
+						<div class="title">{{ post.title }}
+							<span>{{ post.date | date: "%b %-d, %Y" }}</span>
+						</div>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+
+<!-- 	<div class="about-home">
 		<div class="self">
 			<img alt="Elie Génard" src="/img/elie_genard_1.jpg">
 		</div>
@@ -28,18 +42,8 @@ layout: default
 						</div>
 					</div>
 				</a>
-<!-- 				<h2>
-					<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}
-						<div class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</div>
-						{% if post.header-img %}
-							<img src="/img/posts/{{ post.header-img }}" class="post-header-img">
-						{% endif %}
-					</a>
-				</h2> -->
 			</li>
 		{% endfor %}
-	</ul>
-
-<!--   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
+	</ul> -->
 
 </div>
