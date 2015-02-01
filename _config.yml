@@ -14,3 +14,6 @@ markdown: kramdown
 
 enable_tags: true
 enable_comments: false
+
+gems:
+  - jekyll-sitemap
