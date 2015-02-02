@@ -8,12 +8,12 @@ tags: [openFrameworks, ofxAddon, Markov chain]
 lead: "ofxMarkovChain is an addon for openFrameworks that allows you to use Markov chains in a simple way."
 ---
 
-<em>Addon available at Github: </em>[<em>ofxMarkovChain</em> <i class="fa fa-github"></i>][ofxMarkovChain]
+<em>Addon available at Github: </em>[<em>ofxMarkovChain</em> <i class="fa fa-github"></i>][ofxMarkovChain]{:target="_blank"}
 <hr>
 
-[ofxMarkovChain][ofxMarkovChain] is an addon for openFrameworks that allows you to use Markov chains in a simple way.
+[ofxMarkovChain][ofxMarkovChain]{:target="_blank"} is an addon for openFrameworks that allows you to use Markov chains in a simple way.
 
-A [Markov chain][Markov chain] is a mathematical system that includes a certain number of states. The transition from one state to another is determined by a probability. An interesting property of Markov chains is that the next transition only depends on the current state, thus making them memoryless. Here is a state diagram of a simple Markov chain with 2 states:
+A [Markov chain][Markov chain]{:target="_blank"} is a mathematical system that includes a certain number of states. The transition from one state to another is determined by a probability. An interesting property of Markov chains is that the next transition only depends on the current state, thus making them memoryless. Here is a state diagram of a simple Markov chain with 2 states:
 
 <div class="figure">
 	<img src="/img/posts/ofxMarkovChain_markov_chain.png" alt="Markov chain">
@@ -31,7 +31,7 @@ $$
 
 You can notice that in order for the Markov chain to be coherent, the sum of the coefficients of each row of the matrix must be equal to $$1$$. 
 
-An example provided with [ofxMarkovChain][ofxMarkovChain] is a random walker. The walker uses a Markov chain to choose in which direction to go next. The Markov chain has 4 states, each state corresponding to a direction: up, down, left or right. 
+An example provided with [ofxMarkovChain][ofxMarkovChain]{:target="_blank"} is a random walker. The walker uses a Markov chain to choose in which direction to go next. The Markov chain has 4 states, each state corresponding to a direction: up, down, left or right. 
 
 <div class="figure">
 	<img src="/img/posts/ofxMarkovChain_random_walker.png" alt="Random walker">
