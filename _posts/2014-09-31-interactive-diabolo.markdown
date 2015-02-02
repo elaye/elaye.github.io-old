@@ -5,6 +5,7 @@ date:   2014-09-31 14:00:00
 categories: openframeworks
 header-img: "interactive_diabolo_header.png"
 tags: [openFrameworks, particle system, interactive, diabolo, SuperCollider]
+lead: "As part of my last year of study in the Art, Science and Technology Masters at Grenoble INP, I had to realize a project that mixed art, science and technology. I worked with Thomas Moncond'huy on a project of interactive juggling with a diabolo. We had about three months to develop our project and zero budget. "
 ---
 
 As part of my last year of study in the Art, Science and Technology Masters at Grenoble INP, I had to realize a project that mixed art, science and technology. I worked with Thomas Moncond'huy on a project of interactive juggling with a diabolo. We had about three months to develop our project and zero budget. 
