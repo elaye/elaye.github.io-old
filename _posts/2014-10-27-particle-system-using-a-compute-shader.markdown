@@ -18,7 +18,7 @@ The problem is that the new positon of each particle is computed and sent to the
 There are several ways to compute particle movements on the GPU. The old one is to store the acceleration, speed and position of the particles in a texture and to use a shader to compute the new positions. <!-- Although this works fine, it feels a little bit unnatural as the fragment  -->
 Newer methods to do general computing on the GPU principally use OpenCL or OpenGL's compute shader capability. I chose to use compute shaders as they are easier to use with openFrameworks (v0.9.0) and you don't need to install additional libraries. Furthermore, the particles are directly available in the vertex and fragment shader for rendering.
 
-The images below show the result I had with 1 million particles at 30fps on a NVIDIA GeForce GT 525M: 
+The images below show 1 million particles interacting with one (hidden) attractor at 30fps on a NVIDIA GeForce GT 525M: 
 
 <img alt="particle system compute shader screenshot 1" src="/img/posts/particle_system_compute_shader_screenshot_1.png"/>
 
