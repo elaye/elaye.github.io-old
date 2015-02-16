@@ -3,6 +3,19 @@
 	<div class="wrapper">
 
 		<div class="footer-col-wrapper">
+
+				{% if site.vimeo_userid %}
+					<a href="https://vimeo.com/{{ site.vimeo_user_id }}" target="_blank" class="social-link">
+						<i class="fa fa-vimeo-square fa-5x"></i>
+					</a>
+				{% endif %}
+
+				{% if site.email %}
+					<a href="mailto:{{ site.email }}" class="social-link">
+						<i class="fa fa-envelope-square fa-5x"></i>
+					</a>
+				{% endif %}
+
 				{% if site.github_username %}
 					<a href="https://github.com/{{ site.github_username }}" target="_blank" class="social-link">
 						<i class="fa fa-github-square fa-5x"></i>
@@ -12,12 +25,6 @@
 				{% if site.linkedin_username %}
 					<a href="https://www.linkedin.com/pub/{{ site.linkedin_username }}" target="_blank" class="social-link">
 						<i class="fa fa-linkedin-square fa-5x"></i>
-					</a>
-				{% endif %}
-
-				{% if site.email %}
-					<a href="mailto:{{ site.email }}" class="social-link">
-						<i class="fa fa-envelope-square fa-5x"></i>
 					</a>
 				{% endif %}
 

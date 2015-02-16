@@ -84,8 +84,8 @@ a {
 	&.social-link{
 		display: block;
 		float: left;
-		margin-left: -webkit-calc( (800px / 5) - 4em);
-		margin-left: calc( (800px / 5) - 4em);
+		margin-left: -webkit-calc( (800px / 6) - 4em);
+		margin-left: calc( (800px / 6) - 4em);
 		color: $grey;
 		i {
 			transition: all 0.5s ease-in;
@@ -103,6 +103,9 @@ a {
 			}
 			&.fa-rss-square {
 				color: #F99C39;
+			}
+			&.fa-vimeo-square {
+				color: #1AB7EA;
 			}
 		}
 	}
