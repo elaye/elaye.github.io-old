@@ -13,7 +13,7 @@ rss: true
 # Build settings
 markdown: kramdown
 
-enable_tags: true
+enable_tags: false
 enable_comments: false
 
 gems:
