@@ -8,7 +8,7 @@ tags: [openFrameworks, ofxAddon, Markov chain]
 lead: "ofxMarkovChain is an addon for openFrameworks that allows you to use Markov chains in a simple way."
 ---
 
-<em>Addon available at Github: </em>[<em>ofxMarkovChain</em> <i class="fa fa-github"></i>][ofxMarkovChain]{:target="_blank"}
+<em>Addon available on Github: </em>[<em>ofxMarkovChain</em> <i class="fa fa-github"></i>][ofxMarkovChain]{:target="_blank"}
 <hr>
 
 [ofxMarkovChain][ofxMarkovChain]{:target="_blank"} is an addon for openFrameworks that allows you to use Markov chains in a simple way.
