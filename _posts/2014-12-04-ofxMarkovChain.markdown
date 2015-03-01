@@ -5,11 +5,9 @@ date:   2014-12-04 14:38:00
 categories: openframeworks
 header-img: "ofxMarkovChain_header.png"
 tags: [openFrameworks, ofxAddon, Markov chain]
+notes: 'Addon available on Github: <a href="https://github.com/elaye/ofxMarkovChain" target="_blank">ofxMarkovChain</em> <i class="fa fa-github"></i></a>'
 lead: "ofxMarkovChain is an addon for openFrameworks that allows you to use Markov chains in a simple way."
 ---
-
-<em>Addon available on Github: </em>[<em>ofxMarkovChain</em> <i class="fa fa-github"></i>][ofxMarkovChain]{:target="_blank"}
-<hr>
 
 [ofxMarkovChain][ofxMarkovChain]{:target="_blank"} is an addon for openFrameworks that allows you to use Markov chains in a simple way.
 

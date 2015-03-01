@@ -1,5 +1,27 @@
+.post-title {
+	font-size: 41pt;
+	color: $darker-grey;
+}
+
 .post-content {
-	 ul {
+	h1 {
+		font-size: 41pt;
+	}
+
+	h2 {
+		font-size: 26pt;
+	}
+
+	h3 {
+		font-size: 16pt;
+	}
+
+	// p {
+		max-width: 650px;
+		margin-left: auto;
+		margin-right: auto;
+	// }
+	ul {
 		list-style-type: none;
 		li:before {    
 			font-family: 'FontAwesome';

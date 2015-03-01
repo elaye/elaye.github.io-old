@@ -5,11 +5,9 @@ date:   2014-10-27 17:40:00
 categories: openframeworks
 header-img: "particle_system_compute_shader_header.png"
 tags: [openFrameworks, particle system, compute shader, glsl]
+notes: 'The code for the particle system is available <a href="https://github.com/elaye/particleSystemCS" target="_blank">here <i class="fa fa-github"></i></a> (oF v0.9.0 or superior)'
 lead: "After playing a little with a particle system during the interactive diabolo project I wanted to make a bigger one. The one for the diabolo project had 100 000 particles and adding more particles resulted in a big performance decrease."
 ---
-
-<em>The code for the particle system is available </em>[<em>here</em> <i class="fa fa-github"></i>](https://github.com/elaye/particleSystemCS){:target="_blank"} <em>(oF v0.9.0 or superior)</em>
-<hr>
 
 After playing a little with a particle system during the [interactive diabolo project]({% post_url 2014-09-31-interactive-diabolo %}) I wanted to make a bigger one. The one for the diabolo project had 100 000 particles and adding more particles resulted in a big performance decrease.  
 

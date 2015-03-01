@@ -30,6 +30,12 @@ layout: default
 		</div>
 	</header>
 	<hr>
+	{% if page.notes %}
+	<div class="notes">
+		<em>{{ page.notes }}</em>
+	</div>
+	<hr>
+	{% endif %}
 	<article class="post-content">
 		{{ content }}
 	</article>

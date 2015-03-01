@@ -1,6 +1,7 @@
 html, body {
 	/* Pattern from http://subtlepatterns.com */
 	background-image: url("/img/brillant.png");
+	font-family: 'Open Sans', sans-serif;
 }
 
 strong {
@@ -9,6 +10,7 @@ strong {
 
 hr {
 	border: 1px solid #EEE;
+	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
@@ -16,6 +18,26 @@ pre {
 	-moz-tab-size: 2;
 	-o-tab-size: 2;
 	tab-size: 2;	
+}
+
+h1 {
+	font-size: 68pt;
+	font-weight: 600;
+}
+
+h2 {
+	font-size: 41pt;
+	font-weight: 600;
+}
+
+h3 {
+	font-size: 26pt;
+	font-weight: 600;
+}
+
+h4 {
+	font-size: 16pt;
+	font-weight: 600;
 }
 
 .clearfix:after {
