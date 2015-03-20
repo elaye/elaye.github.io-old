@@ -27,3 +27,29 @@ Each ring is generated using only one thread of a particular color, randomly wal
 		<img src="/img/posts/generative_painting_1/trinity_3_small.png" alt="Generative painting 3">
 	</a>
 </div>
+
+The following images are variations based on the same principle:
+
+<div class="figure">
+	<a href="/img/posts/generative_painting_1/trinity_variation_1.png" data-lightbox="generative_painting_variation" alt="Generative painting 1 variation 1">
+		<img src="/img/posts/generative_painting_1/trinity_variation_1.png" alt="Generative painting 1 variation 1">
+	</a>
+</div>
+
+<div class="figure">
+	<a href="/img/posts/generative_painting_1/trinity_variation_2.png" data-lightbox="generative_painting_variation" alt="Generative painting 1 variation 2">
+		<img src="/img/posts/generative_painting_1/trinity_variation_2.png" alt="Generative painting 1 variation 2">
+	</a>
+</div>
+
+<div class="figure">
+	<a href="/img/posts/generative_painting_1/trinity_variation_3.png" data-lightbox="generative_painting_variation" alt="Generative painting 1 variation 3">
+		<img src="/img/posts/generative_painting_1/trinity_variation_3.png" alt="Generative painting 1 variation 3">
+	</a>
+</div>
+
+<div class="figure">
+	<a href="/img/posts/generative_painting_1/trinity_variation_4.png" data-lightbox="generative_painting_variation" alt="Generative painting 1 variation 4">
+		<img src="/img/posts/generative_painting_1/trinity_variation_4.png" alt="Generative painting 1 variation 4">
+	</a>
+</div>
