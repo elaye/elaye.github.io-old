@@ -5,7 +5,7 @@ date:   2015-03-12 13:45:00
 categories: openframeworks
 header-img: "spirograph/header.png"
 tags: [openFrameworks]
-notes: 'Code available on GitHub: <a href="https://github.com/elaye/spirograph" target="_blank">Spirograph</em> <i class="fa fa-github"></i></a>'
+notes: 'Check out the <a href="/demo_spirograph/index.html">live demo <i class="fa fa-cube"></i></a><br>Code available on GitHub: <a href="https://github.com/elaye/spirograph" target="_blank">Spirograph <i class="fa fa-github"></i></a>'
 lead: "Spirograph"
 ---
 
