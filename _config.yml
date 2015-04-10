@@ -4,7 +4,7 @@ email: elaye.github.io@gmail.com
 description: Creative coding and stuff...
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://elaye.github.io" # the base hostname & protocol for your site
-# twitter_username: jekyllrb
+twitter_username: ElieGenard
 github_username:  elaye
 linkedin_username: elie-genard
 vimeo_userid: user37359615
