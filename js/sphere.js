@@ -2,9 +2,9 @@ var ExtrudedIcosphere = function(){
 	var ico = new THREE.IcosahedronGeometry(2, 1);
 	var extIco = [];
 
-	ico.faces.forEach(function(f){
+	ico.faces.forEach(function(f, i){
 		var geometry = new THREE.Geometry();
-		geometry.dynamic = true;
+		// geometry.dynamic = true;
 		geometry.vertices.push(
 			new THREE.Vector3(ico.vertices[f.a].x, ico.vertices[f.a].y, ico.vertices[f.a].z),
 			new THREE.Vector3(ico.vertices[f.b].x, ico.vertices[f.b].y, ico.vertices[f.b].z),
@@ -12,6 +12,11 @@ var ExtrudedIcosphere = function(){
 		);
 		geometry.faces.push(new THREE.Face3(0, 1, 2));
 		geometry.computeFaceNormals();
+		
+		geometry.mouseOver = false;
+		geometry.displaced = false;
+		geometry.faceId = i;
+		
 		extIco.push(geometry);
 	});
 	return extIco;
@@ -51,9 +56,10 @@ var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
 material.wireframe = true;
 
 var meshes = [];
-extIco.forEach(function(g){
+extIco.forEach(function(g, i){
 	var mesh = new THREE.Mesh(g, material);
-	meshes.push(mesh);
+	var baseMesh = new THREE.Mesh(baseExtIco[i], material);
+	meshes.push(baseMesh);
 	scene.add(mesh);
 });
 
@@ -71,39 +77,35 @@ var render = function () {
 
 	material.color.set(0xffffff);
 
-	for(var i = 0; i < extIco.length; i++){
-		for(var j = 0; j < 3; j++){
-			extIco[i].vertices[j].copy(baseExtIco[i].vertices[j]);
+	extIco.forEach(function(geometry){
+		geometry.mouseOver = false;
+	});
+
+	intersects.forEach(function(intObject){
+		var baseGeometry = intObject.object.geometry;
+		var geometry = extIco[baseGeometry.faceId];
+		geometry.mouseOver = true;
+		// console.log(geometry.mouseOver);
+		if(geometry.displaced === false){
+			geometry.displaced = true;
+			var faceNormal = baseGeometry.faces[0].normal;
+			geometry.vertices.forEach(function(v, i){
+				v.add(faceNormal);
+			});
+			geometry.verticesNeedUpdate = true;			
 		}
-		extIco[i].verticesNeedUpdate = true;
-	}
+	});
 
-	for ( var i = 0; i < intersects.length; i++ ) {
-		// intersects[ i ].object.material.color.set( 0xff0000 );
-		intersects[i].object.geometry.vertices.forEach(function(v, j){
-			// console.log(v);
-			// v.add(new THREE.Vector3(1.0, 0.0, 0.0));
-			// var n = intersects[j].object.geometry.normals[j];
-			var n = intersects[i].object.geometry.faces[0].normal;
-			v.add(n);
-			// console.log(v);
-		});
-		// intersects[i].object.geometry.__dirtyVertices = true;
-		intersects[i].object.geometry.verticesNeedUpdate = true;
+	extIco.forEach(function(geometry, i){
+		if(geometry.mouseOver === false && geometry.displaced === true){
+			geometry.vertices.forEach(function(v, j){
+					v.copy(baseExtIco[i].vertices[j]);
+					geometry.displaced = false;
+			});
+			geometry.verticesNeedUpdate = true;
+		}
+	});
 
-		// console.log(intersects[i].object.geometry);
-	}
-	// meshes[0].geometry.vertices.forEach(function(v){
-			// console.log(v);
-			// v.add(new THREE.Vector3(3.0, 3.0, 3.0));
-			// console.log(v);
-		// });
-	// for(var i = 0; i < meshes[0].geometry.vertices.length; i++){
-		// console.log(scene.children[0].geometry.vertices);
-		// scene.children[0].geometry.vertices[i].add(new THREE.Vector3(1.0, 0.0, 0.0));
-		// scene.children[0].geometry.__dirtyVertices = true;
-		// console.log(scene.children[0].geometry.vertices);
-	// }
 	// cube.rotation.x += 0.1;
 	// meshes[0].rotation.y += 0.01;
 	// renderer.antialias = true;
