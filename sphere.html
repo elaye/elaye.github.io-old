@@ -3,11 +3,48 @@
 		<title>Sphere</title>
 		<style>
 			body { margin: 0; }
-			canvas { width: 100%; height: 100% }
+			canvas { width: 100%; height: 100%; background-color: white; }
 		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.js"></script>
 	</head>
 	<body>
+		<script id="vertexShader" type="x-shader/x-vertex">
+
+			uniform vec3 intPos;
+			uniform vec3 lightPos;
+
+			varying vec4 color;
+
+			void main()	{
+				float d = distance(normal, intPos);
+				float bOver = step(0.001, intPos.x + intPos.y + intPos.z);
+				// d = max(0.0, 1.5 - d);
+				// d = 1.0 / (5.0 * d * d + 0.0000000001);
+				d = bOver * 7.0 * exp(- d * d * 2.0);
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position + d * normal, 1.0 );
+
+				color = vec4(0.1, 0.1, 0.7, 1.0) * clamp(dot(normal, normalize(lightPos)), 0.0, 1.0);
+				color += vec4(0.25, 0.25, 0.3, 1.0);
+			}
+
+		</script>
+
+		<script id="fragmentShader" type="x-shader/x-fragment">
+
+			uniform vec2 resolution;
+			uniform float time;
+
+			varying vec4 color;
+
+			void main()	{
+
+				vec2 p = -1.0 + 2.0 * gl_FragCoord.xy / resolution.xy;
+				// gl_FragColor=vec4(1.0, 0.0, 0.0, 1.0);
+				gl_FragColor = color;
+
+			}
+
+		</script>	
 		<!-- <script src="js/three.min.js"></script> -->
 		<script src="js/sphere.js"></script>
 	</body>
