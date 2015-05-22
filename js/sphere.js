@@ -65,7 +65,7 @@ var ExtrudedIcosphere = function(){
 // }
 
 var raycaster = new THREE.Raycaster();
-var mouse = new THREE.Vector2();
+var mouse = new THREE.Vector2(-window.innerWidth/2, window.innerHeight/2);
 
 function onMouseMove( event ) {
 	// calculate mouse position in normalized device coordinates
@@ -83,7 +83,8 @@ var renderer = new THREE.WebGLRenderer();
 // renderer.setFaceCulling("front", "ccw");
 // renderer.antialias = true;
 renderer.setSize( window.innerWidth, window.innerHeight );
-renderer.setClearColor( 0xffffff, 1);
+renderer.setClearColor( 0xfafafa, 1);
+// renderer.gammaOutput = true;
 document.body.appendChild( renderer.domElement );
 
 var baseExtIco = new ExtrudedIcosphere();
@@ -116,14 +117,18 @@ var extIco = new ExtrudedIcosphere();
 // scene.add(L2);
 
 // THREE.ImageUtils.crossOrigin = '';
-var texture = new THREE.ImageUtils.loadTexture('concrete_tex2D.jpg');
+var texture = new THREE.ImageUtils.loadTexture('concrete_tex2D_light.jpg');
 // var texture = new THREE.ImageUtils.loadTexture('koala.jpg');
 // texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
 var uniforms = {
-	time: { type: "f", value: 1.0 },
+	time: { type: "f", value: 0 },
 	resolution: { type: "v2", value: new THREE.Vector2(512.0, 512.0) },
 	intPos: {type: "v3", value: new THREE.Vector3() },
 	lightPos: {type: "v3", value: new THREE.Vector3(2.0, 1.0, 1.0)},
+	bMouseOver: {type: "f", value: 0},
+	mouseOverCnt: {type: "f", value: 0},
+	mouseOutCnt: {type: "f", value: 0},
 	tex: {type: "t", value: texture}
 };
 
@@ -143,13 +148,12 @@ var uniforms = {
 
 // 			}";
 
-console.log(shaders);
 var material = new THREE.ShaderMaterial( {
 
 	uniforms: uniforms,
 	// vertexShader: document.getElementById( 'vertexShader' ).textContent,
 	// fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-	map: texture,
+	// map: texture,
 	vertexShader: shaders["vertex"],
 	fragmentShader: shaders["fragment"]
 
@@ -178,6 +182,8 @@ extIco.forEach(function(g, i){
 
 camera.position.z = 5;
 
+var mouseOver = false;
+
 var render = function () {
 	requestAnimationFrame( render );
 	// renderer.setFaceCulling(false);
@@ -191,10 +197,23 @@ var render = function () {
 	var intersects = raycaster.intersectObjects(meshes);
 	if(intersects.length > 0){
 		uniforms.intPos.value = intersects[0].point;
+		if(!mouseOver){
+			uniforms.mouseOverCnt.value += 0;
+		}
+		mouseOver = true;
+		uniforms.mouseOverCnt.value += 0.01;
 	}
 	else{
 		uniforms.intPos.value = new THREE.Vector3();
+		// uniforms.mouseOverCnt.value = 0;
+		mouseOver = false;
+		uniforms.mouseOutCnt.value += 0.01;
 	}
+
+	uniforms.bMouseOver.value = (mouseOver)? 1 : 0;
+	uniforms.time.value += 0.01;
+	// !!! When to reset time?
+
 	// displaceFaces(intersects);
 
 	// cube.rotation.x += 0.1;
