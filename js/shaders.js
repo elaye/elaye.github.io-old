@@ -9,29 +9,28 @@ var shaders = {
 			"uniform float mouseOutCnt;",
 
 			"attribute vec3 faceCenter;",
-			
+			"attribute vec3 faceNormal;",
+
 			"varying vec4 varyingDiffuse;",
 			"varying vec2 varyingUv;",
 
 			"void displace(inout vec3 p){",
+				"//float d = distance(faceNormal, normalize(intPos));",
 				"float d = distance(normal, intPos);",
-				"// float bOver = step(0.001, intPos.x + intPos.y + intPos.z);",
 				"float normalDisAmp = bMouseOver * 57.0 * exp(-d * d * 4.0);",
+				"//vec3 normalDis = normalDisAmp * 100.0 * faceNormal;",
 				"vec3 normalDis = normalDisAmp * normal;",
 
 				"vec3 noiseDir = normalize(p);",
 				"vec3 noise = 0.2 * snoise(vec4(100.0 * p, 2.0 * mouseOutCnt)) * noiseDir;",
 
-				"float lateralDisAmp = bMouseOver * 100.0 * exp(-d * d * 4.0);",
-				"//vec3 lateralDir = normalize(cross(intPos, normal));",
-				"vec3 lateralDir;",
-				"//if(bMouseOver > 0.5){",
-					"lateralDir = normalize(faceCenter - intPos);",
-				"//}",
+				"float lateralDisAmp = bMouseOver * 1000.0 * exp(-d * d * 6.0);",
+				"vec3 lateralDir = normalize(intPos - faceCenter);",
 				"vec3 lateralDis = lateralDisAmp * lateralDir;",
 
-				"// p += normalDis + noise;",
-				"p += normalDis + lateralDis + noise;",
+				"p += normalDis + noise;",
+				"//p += 2.0 * faceNormal;",
+				"//p += normalDis + lateralDis + noise;",
 			"}",
 
 			"vec3 rotate(vec3 v, vec4 q){",
