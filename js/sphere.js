@@ -13,15 +13,12 @@ var ExtrudedIcosphere = function(){
 		geometry.faces.push(new THREE.Face3(0, 1, 2));
 		geometry.computeFaceNormals();
 		
-		// geometry.faceVertexUvs.push([new THREE.Vector2(0.0, 1.0),
-		//                        new THREE.Vector2(1.0, 0.0),
-		//                        new THREE.Vector2(0.0, 0.0)]);
-		// geometry.faceVertexUvs.push(THREE.Vector2(0.0, 12.0),
-		//                        THREE.Vector2(12.0, 0.0),
-		//                        THREE.Vector2(0.0, 0.0));
-				geometry.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
-		                       new THREE.Vector2(0, 1),
-		                       new THREE.Vector2(1, 0)]);
+		var xuv = Math.random() * 0.9;
+		var yuv = Math.random() * 0.9;
+		geometry.faceVertexUvs[0].push([new THREE.Vector2(xuv, yuv),
+		                       new THREE.Vector2(xuv, yuv + 0.1),
+		                       new THREE.Vector2(xuv + 0.1, yuv)]);
+		
 		geometry.uvsNeedUpdate = true;
 
 		geometry.mouseOver = false;
@@ -33,39 +30,39 @@ var ExtrudedIcosphere = function(){
 	return extIco;
 }
 
-function displaceFaces(faces){
-	extIco.forEach(function(geometry){
-		geometry.mouseOver = false;
-	});
+// function displaceFaces(faces){
+// 	extIco.forEach(function(geometry){
+// 		geometry.mouseOver = false;
+// 	});
 
-	faces.forEach(function(intObject){
-		var baseGeometry = intObject.object.geometry;
-		var geometry = extIco[baseGeometry.faceId];
-		geometry.mouseOver = true;
-		if(geometry.displaced === false){
-			geometry.displaced = true;
-			var faceNormal = baseGeometry.faces[0].normal;
-			displaceFace(geometry.vertices, faceNormal);
-			geometry.verticesNeedUpdate = true;			
-		}
-	});
+// 	faces.forEach(function(intObject){
+// 		var baseGeometry = intObject.object.geometry;
+// 		var geometry = extIco[baseGeometry.faceId];
+// 		geometry.mouseOver = true;
+// 		if(geometry.displaced === false){
+// 			geometry.displaced = true;
+// 			var faceNormal = baseGeometry.faces[0].normal;
+// 			displaceFace(geometry.vertices, faceNormal);
+// 			geometry.verticesNeedUpdate = true;			
+// 		}
+// 	});
 
-	extIco.forEach(function(geometry, i){
-		if(geometry.mouseOver === false && geometry.displaced === true){
-			geometry.vertices.forEach(function(v, j){
-					v.copy(baseExtIco[i].vertices[j]);
-					geometry.displaced = false;
-			});
-			geometry.verticesNeedUpdate = true;
-		}
-	});
-}
+// 	extIco.forEach(function(geometry, i){
+// 		if(geometry.mouseOver === false && geometry.displaced === true){
+// 			geometry.vertices.forEach(function(v, j){
+// 					v.copy(baseExtIco[i].vertices[j]);
+// 					geometry.displaced = false;
+// 			});
+// 			geometry.verticesNeedUpdate = true;
+// 		}
+// 	});
+// }
 
-function displaceFace(face, dir){
-	face.forEach(function(v){
-		v.add(dir);
-	});
-}
+// function displaceFace(face, dir){
+// 	face.forEach(function(v){
+// 		v.add(dir);
+// 	});
+// }
 
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
@@ -145,14 +142,16 @@ var uniforms = {
 // 				gl_FragColor=vec4(1.0, 0.0, 0.0, 1.0);
 
 // 			}";
+
+console.log(shaders);
 var material = new THREE.ShaderMaterial( {
 
 	uniforms: uniforms,
-	vertexShader: document.getElementById( 'vertexShader' ).textContent,
-	fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
-	map: texture
-	// vertexShader: vertexShader,
-	// fragmentShader: fragmentShader
+	// vertexShader: document.getElementById( 'vertexShader' ).textContent,
+	// fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+	map: texture,
+	vertexShader: shaders["vertex"],
+	fragmentShader: shaders["fragment"]
 
 } );
 
