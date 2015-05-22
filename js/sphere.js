@@ -13,6 +13,17 @@ var ExtrudedIcosphere = function(){
 		geometry.faces.push(new THREE.Face3(0, 1, 2));
 		geometry.computeFaceNormals();
 		
+		// geometry.faceVertexUvs.push([new THREE.Vector2(0.0, 1.0),
+		//                        new THREE.Vector2(1.0, 0.0),
+		//                        new THREE.Vector2(0.0, 0.0)]);
+		// geometry.faceVertexUvs.push(THREE.Vector2(0.0, 12.0),
+		//                        THREE.Vector2(12.0, 0.0),
+		//                        THREE.Vector2(0.0, 0.0));
+				geometry.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+		                       new THREE.Vector2(0, 1),
+		                       new THREE.Vector2(1, 0)]);
+		geometry.uvsNeedUpdate = true;
+
 		geometry.mouseOver = false;
 		geometry.displaced = false;
 		geometry.faceId = i;
@@ -107,12 +118,16 @@ var extIco = new ExtrudedIcosphere();
 // L2.position.x = -100;
 // scene.add(L2);
 
+// THREE.ImageUtils.crossOrigin = '';
+var texture = new THREE.ImageUtils.loadTexture('concrete_tex2D.jpg');
+// var texture = new THREE.ImageUtils.loadTexture('koala.jpg');
+// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 var uniforms = {
 	time: { type: "f", value: 1.0 },
-	resolution: { type: "v2", value: new THREE.Vector2() },
+	resolution: { type: "v2", value: new THREE.Vector2(512.0, 512.0) },
 	intPos: {type: "v3", value: new THREE.Vector3() },
-	lightPos: {type: "v3", value: new THREE.Vector3(2.0, 1.0, 1.0)}
-
+	lightPos: {type: "v3", value: new THREE.Vector3(2.0, 1.0, 1.0)},
+	tex: {type: "t", value: texture}
 };
 
 // var vertexShader = "			void main()	{
@@ -135,10 +150,17 @@ var material = new THREE.ShaderMaterial( {
 	uniforms: uniforms,
 	vertexShader: document.getElementById( 'vertexShader' ).textContent,
 	fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+	map: texture
 	// vertexShader: vertexShader,
 	// fragmentShader: fragmentShader
 
 } );
+
+// var wireMaterial = new THREE.MeshBasicMaterial( { color: 0xdddddd } );
+// wireMaterial.wireframe = true;
+var wireMaterial = new THREE.ShaderMaterial();
+material.clone(wireMaterial);
+wireMaterial.wireframe = true;
 
 material.side = THREE.DoubleSide;
 // material.wireframe = true;
@@ -147,6 +169,8 @@ extIco.forEach(function(g, i){
 	// var mesh = new THREE.Mesh(g, material);
 	// var mesh = new THREE.Mesh(g, pinkMat);
 	var mesh = new THREE.Mesh(g, material);
+	// var mesh = new THREE.SceneUtils.createMultiMaterialObject( g, [material, wireMaterial] );
+	// mesh.add(wireMaterial);
 	// mesh.doubleSided = true;
 	var baseMesh = new THREE.Mesh(baseExtIco[i], material);
 	meshes.push(baseMesh);
@@ -178,6 +202,10 @@ var render = function () {
 	// meshes[0].rotation.y += 0.01;
 	// renderer.antialias = true;
 	renderer.render(scene, camera);
+
+	// material.wireframe = true;
+	// renderer.render(scene, camera);
+	// material.wireframe = false;
 };
 
 render();
