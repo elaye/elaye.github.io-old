@@ -8,6 +8,9 @@ var shaders = {
 			"uniform float mouseOverCnt;",
 			"uniform float mouseOutCnt;",
 
+			"uniform float normalAmp;",
+			"uniform float lateralAmp;",
+
 			"attribute vec3 faceCenter;",
 			"attribute vec3 faceNormal;",
 
@@ -15,22 +18,20 @@ var shaders = {
 			"varying vec2 varyingUv;",
 
 			"void displace(inout vec3 p){",
-				"//float d = distance(faceNormal, normalize(intPos));",
 				"float d = distance(normal, intPos);",
-				"float normalDisAmp = bMouseOver * 57.0 * exp(-d * d * 4.0);",
-				"//vec3 normalDis = normalDisAmp * 100.0 * faceNormal;",
-				"vec3 normalDis = normalDisAmp * normal;",
+				"float normalDisAmp = bMouseOver * normalAmp * exp(-d * d * 4.0);",
+				"vec3 normalDis = normalDisAmp * faceNormal;",
 
 				"vec3 noiseDir = normalize(p);",
 				"vec3 noise = 0.2 * snoise(vec4(100.0 * p, 2.0 * mouseOutCnt)) * noiseDir;",
 
-				"float lateralDisAmp = bMouseOver * 1000.0 * exp(-d * d * 6.0);",
-				"vec3 lateralDir = normalize(intPos - faceCenter);",
+				"float lateralDisAmp = bMouseOver * lateralAmp * exp(-d * d * 4.0);",
+				"//vec3 lateralDir = normalize(intPos - faceCenter);",
+				"//vec3 lateralDir = cross(intPos, faceCenter);",
+				"vec3 lateralDir = cross(-intPos, cross(intPos, faceCenter));",
 				"vec3 lateralDis = lateralDisAmp * lateralDir;",
 
-				"p += normalDis + noise;",
-				"//p += 2.0 * faceNormal;",
-				"//p += normalDis + lateralDis + noise;",
+				"p += normalDis + lateralDis + noise;",
 			"}",
 
 			"vec3 rotate(vec3 v, vec4 q){",
