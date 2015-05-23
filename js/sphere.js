@@ -1,6 +1,6 @@
 var Options = function() {
   this.normalAmp = 30;
-  this.lateralAmp = 30;
+  this.lateralAmp = 60;
   // this.explode = function() { ... };
   // Define render logic ...
 };
@@ -38,7 +38,7 @@ var texture = new THREE.ImageUtils.loadTexture('concrete_tex2D_light.jpg');
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setClearColor( 0xfafafa, 1);
-// renderer.antialias = true;
+renderer.antialias = true;
 // renderer.gammaOutput = true;
 document.body.appendChild(renderer.domElement);
 
