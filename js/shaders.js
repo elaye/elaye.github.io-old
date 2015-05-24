@@ -9,6 +9,7 @@ var shaders = {
 			"uniform float bMouseOver;",
 			"uniform float mouseOverCnt;",
 			"uniform float mouseOutCnt;",
+			"uniform float reconstructCnt;",
 
 			"uniform float normalAmp;",
 			"uniform float lateralAmp;",
@@ -20,13 +21,13 @@ var shaders = {
 			"varying vec2 varyingUv;",
 
 			"void displace(float d, inout vec3 p){",
-				"float normalDisAmp = bMouseOver * normalAmp * exp(-d * d * 4.0);",
+				"float normalDisAmp = bMouseOver * reconstructCnt * normalAmp * exp(-d * d * 4.0);",
 				"vec3 normalDis = normalDisAmp * faceNormal;",
 
 				"vec3 noiseDir = normalize(p);",
-				"vec3 noise = 0.2 * snoise(vec4(100.0 * p, 2.0 * mouseOutCnt)) * noiseDir;",
+				"vec3 noise = 0.2 * snoise(vec4(50.0 * p, 2.0 * mouseOutCnt)) * noiseDir;",
 
-				"float lateralDisAmp = bMouseOver * lateralAmp * exp(-d * d * 4.0);",
+				"float lateralDisAmp = bMouseOver * reconstructCnt * lateralAmp * exp(-d * d * 4.0);",
 				"vec3 lateralDir = cross(-intPos, cross(intPos, faceCenter));",
 				"vec3 lateralDis = lateralDisAmp * lateralDir;",
 

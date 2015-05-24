@@ -89,6 +89,7 @@ var uniforms = {
 	bMouseOver: {type: "f", value: 0},
 	mouseOverCnt: {type: "f", value: 0},
 	mouseOutCnt: {type: "f", value: 0},
+	reconstructCnt: {type: "f", value: 0},
 	tex: {type: "t", value: texture},
 	normalAmp: {type: "f", value: opt.normalAmp},
 	lateralAmp: {type: "f", value: opt.lateralAmp}
@@ -105,11 +106,47 @@ var material = new THREE.ShaderMaterial( {
 });
 
 material.side = THREE.DoubleSide;
+// material.wireframe = true;
 
 var mesh = new THREE.Mesh(extIco, material);
 scene.add(mesh);
 // wireframe = new THREE.WireframeHelper( mesh, 0x00ff00 );
 // scene.add(wireframe);
+
+var Timer = function(){
+	this.totalTime = 500;
+	this.timeStart = 0;
+	this.isOn = false;
+
+	this.start = function(t){
+		this.timeStart = Date.now();
+		this.totalTime = t;
+		this.isOn = true;
+	};
+
+	// this.isOn = function(){
+		// return isOn;
+	// };
+
+	this.getTimeLeft = function(){
+		if(!this.isOn){
+			return 0;
+		}
+		var timeLeft = ((this.timeStart + this.totalTime) - Date.now());
+		if(timeLeft < 0){
+			timeLeft = 0;
+			isOn = false;
+		}
+		return timeLeft;
+	};
+
+	this.getTimeLeftNormalized = function(){
+		var timeLeftNormalized = this.getTimeLeft() / this.totalTime;	
+		return timeLeftNormalized;
+	};
+}
+var reconstructTimer = new Timer();
+var reconstructDuration = 500;
 var mouseOver = false;
 
 var render = function () {
@@ -123,20 +160,39 @@ var render = function () {
 	// var intersects = raycaster.intersectObjects(meshes);
 	if(intersects.length > 0){
 		uniforms.intPos.value = intersects[0].point;
-		if(!mouseOver){
-			uniforms.mouseOverCnt.value += 0;
-		}
+		// if(!mouseOver){
+			// uniforms.mouseOverCnt.value += 0;
+		// }
 		mouseOver = true;
-		uniforms.mouseOverCnt.value += 0.01;
+		// uniforms.mouseOverCnt.value += 0.01;
 	}
 	else{
 		// uniforms.intPos.value = new THREE.Vector3();
 		// uniforms.mouseOverCnt.value = 0;
+		if(mouseOver === true){
+			// if(!reconstructTimer.isOn){
+				reconstructTimer.start(reconstructDuration);
+			// }
+		}
 		mouseOver = false;
 		uniforms.mouseOutCnt.value += 0.01;
 	}
 
-	uniforms.bMouseOver.value = (mouseOver)? 1 : 0;
+	if(mouseOver === true){
+		uniforms.bMouseOver.value = 1;
+		uniforms.reconstructCnt.value = 1;
+	}
+	else{
+		var timeLeft = reconstructTimer.getTimeLeftNormalized();
+		if(timeLeft > 0){
+			uniforms.bMouseOver.value = 1;
+		}
+		else{
+			uniforms.bMouseOver.value = 0;
+		}
+		uniforms.reconstructCnt.value = timeLeft;
+	}
+	// console.log(uniforms.reconstructCnt.value);
 	uniforms.time.value += 0.01;
 	// !!! When to reset time?
 
