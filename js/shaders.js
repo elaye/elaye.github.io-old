@@ -1,6 +1,7 @@
 var shaders = {
 	"vertex": [
-			"#define PI 3.141592653589793238462643383279",
+			shaderUtil["common"],
+			shaderUtil["distributions"],
 			shaderUtil["snoise4D"],
 			shaderUtil["quaternionOperations"],
 			"uniform vec3 intPos;",
@@ -13,6 +14,8 @@ var shaders = {
 
 			"uniform float normalAmp;",
 			"uniform float lateralAmp;",
+			"uniform float normalDev;",
+			"uniform float lateralDev;",
 
 			"attribute vec3 faceCenter;",
 			"attribute vec3 faceNormal;",
@@ -22,13 +25,17 @@ var shaders = {
 
 			"void displace(float d, inout vec3 p){",
 				"float rec = 1.0 - exp(-reconstructCnt*3.0);",
-				"float normalDisAmp = bMouseOver * rec * normalAmp * exp(-d * d * 4.0);",
+				"//float normalDisAmp = bMouseOver * rec * normalAmp * exp(-d * d * 5.0);",
+				"float normalDisAmp = bMouseOver * rec * normalAmp * gauss(normalDev, d);",
 				"vec3 normalDis = normalDisAmp * faceNormal;",
 
 				"vec3 noiseDir = normalize(p);",
-				"vec3 noise = 0.2 * snoise(vec4(50.0 * p, 2.0 * mouseOutCnt)) * noiseDir;",
+				// "vec3 noise = 0.2 * snoise(vec4(50.0 * p, 1.0 * mouseOutCnt * (1.0 - reconstructCnt))) * noiseDir;",
+				"vec3 noise = 0.2 * snoise(vec4(50.0 * p.xy, 1.0 * mouseOutCnt, rec)) * noiseDir;",
+				// "vec3 noise = 0.2 * snoise(vec4(50.0 * p, 1.0 * mouseOutCnt)) * noiseDir;",
 
-				"float lateralDisAmp = bMouseOver * rec * lateralAmp * exp(-d * d * 4.0);",
+				"//float lateralDisAmp = bMouseOver * rec * lateralAmp * exp(-d * d * 5.0);",
+				"float lateralDisAmp = bMouseOver * rec * lateralAmp *gauss(lateralDev, d);",
 				"vec3 lateralDir = cross(-intPos, cross(intPos, faceCenter));",
 				"vec3 lateralDis = lateralDisAmp * lateralDir;",
 
@@ -67,8 +74,8 @@ var shaders = {
 			"void main(){",
 				"vec3 newPosition = position;",
 				"float d = distance(normal, intPos);",
-				"displace(d, newPosition);",
 				"randomRotate(d, newPosition);",
+				"displace(d, newPosition);",
 				"gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);",
 
 				"varyingDiffuse = vec4(0.49, 0.61, 0.71, 1.0) * clamp(dot(normal, normalize(lightPos)), 0.0, 1.0);",

@@ -1,6 +1,11 @@
 var Options = function() {
-  this.normalAmp = 30;
-  this.lateralAmp = 60;
+  // this.normalAmp = 30;
+  this.normalAmp = 300.0;
+  // this.lateralAmp = 60;
+  this.lateralAmp = 600.0;
+
+  this.normalDev = 0.3;
+  this.lateralDev = 0.25;
   // this.explode = function() { ... };
   // Define render logic ...
 };
@@ -13,14 +18,25 @@ window.onload = function() {
 	var guiContainer = document.getElementById('gui');
 	guiContainer.appendChild(gui.domElement);
 
-	normalAmpControl = gui.add(opt, 'normalAmp', 0, 100);
-	lateralAmpControl = gui.add(opt, 'lateralAmp', 0, 100);
+	// normalAmpControl = gui.add(opt, 'normalAmp', 0, 100);
+	normalAmpControl = gui.add(opt, 'normalAmp', 0, 1000);
+	// lateralAmpControl = gui.add(opt, 'lateralAmp', 0, 100);
+	lateralAmpControl = gui.add(opt, 'lateralAmp', 0, 1000);
+
+	normalDevControl = gui.add(opt, 'normalDev', 0.2, 0.4);
+	lateralDevControl = gui.add(opt, 'lateralDev', 0.2, 0.4);
 
 	normalAmpControl.onFinishChange(function(value) {
 		uniforms.normalAmp.value = opt.normalAmp;
 	});
 	lateralAmpControl.onFinishChange(function(value) {
 		uniforms.lateralAmp.value = opt.lateralAmp;
+	});
+	normalDevControl.onFinishChange(function(value) {
+		uniforms.normalDev.value = opt.normalDev;
+	});
+	lateralDevControl.onFinishChange(function(value) {
+		uniforms.lateralDev.value = opt.lateralDev;
 	});
 };
 
@@ -92,7 +108,9 @@ var uniforms = {
 	reconstructCnt: {type: "f", value: 0},
 	tex: {type: "t", value: texture},
 	normalAmp: {type: "f", value: opt.normalAmp},
-	lateralAmp: {type: "f", value: opt.lateralAmp}
+	lateralAmp: {type: "f", value: opt.lateralAmp},
+	normalDev: {type: "f", value: opt.normalDev},
+	lateralDev: {type: "f", value: opt.lateralDev}
 };
 
 var material = new THREE.ShaderMaterial( {
@@ -196,6 +214,9 @@ var render = function () {
 	uniforms.time.value += 0.01;
 	// !!! When to reset time?
 
+	// if(!mouseOver){
+		// mesh.rotation.y += 0.005;
+	// }
 	// cube.rotation.x += 0.1;
 	// meshes[0].rotation.y += 0.01;
 	// renderer.antialias = true;

@@ -1,4 +1,21 @@
 var shaderUtil = {
+	"common": [
+		"#define PI 3.141592653589793238462643383279",
+
+		"float fastSqrt(float x){",
+			"float s;",
+			"return s;",
+		"}"
+	].join("\n"),
+
+	"distributions": [
+		"float gauss(float s, float x){",
+			"float a = 1.0/sqrt(2.0 * PI * s * s);",
+			"float f = a * exp(-x * x / (2.0 * s * s));",
+			"return f;",
+		"}",
+	].join("\n"),
+
 	"quaternionOperations": [
 		// "void rotate(inout vec3 v, vec4 q){",
 		// 	"v += 2.0 * cross( cross( v, q.xyz ) + q.w * v, q.xyz );",

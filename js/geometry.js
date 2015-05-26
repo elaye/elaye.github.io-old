@@ -1,5 +1,5 @@
 var ExtrudedIcosphere = function(){
-	var ico = new THREE.IcosahedronGeometry(2, 4);
+	var ico = new THREE.IcosahedronGeometry(2, 3);
 	// var extIco = [];
 
 	var indices = new Uint16Array(ico.faces.length * 3);
