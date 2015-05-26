@@ -1,3 +1,36 @@
+var Timer = function(){
+	this.totalTime = 500;
+	this.timeStart = 0;
+	this.isOn = false;
+
+	this.start = function(t){
+		this.timeStart = Date.now();
+		this.totalTime = t;
+		this.isOn = true;
+	};
+
+	// this.isOn = function(){
+		// return isOn;
+	// };
+
+	this.getTimeLeft = function(){
+		if(!this.isOn){
+			return 0;
+		}
+		var timeLeft = ((this.timeStart + this.totalTime) - Date.now());
+		if(timeLeft < 0){
+			timeLeft = 0;
+			isOn = false;
+		}
+		return timeLeft;
+	};
+
+	this.getTimeLeftNormalized = function(){
+		var timeLeftNormalized = this.getTimeLeft() / this.totalTime;	
+		return timeLeftNormalized;
+	};
+}
+
 var shaderUtil = {
 	"common": [
 		"#define PI 3.141592653589793238462643383279",
