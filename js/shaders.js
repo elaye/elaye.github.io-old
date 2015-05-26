@@ -25,6 +25,9 @@ var shaders = {
 
 			"uniform float rewindSpeed;",
 
+			"uniform vec3 diffuseColor1;",
+			"uniform vec3 diffuseColor2;",
+
 			"attribute vec3 faceCenter;",
 			"attribute vec3 faceNormal;",
 
@@ -90,8 +93,8 @@ var shaders = {
 				"displace(d, newPosition);",
 				"gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);",
 
-				"varyingDiffuse = vec4(0.49, 0.61, 0.71, 1.0) * clamp(dot(normal, normalize(lightPos1)), 0.0, 1.0);",
-				"varyingDiffuse += vec4(0.71, 0.56, 0.44, 1.0) * clamp(dot(normal, normalize(lightPos2)), 0.0, 1.0);",
+				"varyingDiffuse = vec4(diffuseColor1, 1.0) * clamp(dot(normal, normalize(lightPos1)), 0.0, 1.0);",
+				"varyingDiffuse += vec4(diffuseColor2, 1.0) * clamp(dot(normal, normalize(lightPos2)), 0.0, 1.0);",
 				"varyingUv = uv;",
 			"}"
 	].join("\n"),
@@ -103,15 +106,18 @@ var shaders = {
 
 			"uniform sampler2D tex;",
 
+			"uniform vec3 ambientColor;",
+
 			"varying vec4 varyingDiffuse;",
 			"varying vec2 varyingUv;",
 
 			"void main(){",
 				"// vec4 texColor = vec4(inputToLinear(texture2D(tex, varyingUv).xyz), 1.0);",
-				"vec4 texColor = texture2D(tex, varyingUv);",
+				// "vec4 texColor = texture2D(tex, varyingUv);",
 
-				"vec4 ambient = vec4(0.45, 0.45, 0.50, 1.0);",
-				"vec4 diffuse = vec4(varyingDiffuse.xyz * texColor.xyz, 1.0);",
+				"vec4 ambient = vec4(ambientColor, 1.0);",
+				// "vec4 diffuse = vec4(varyingDiffuse.xyz * texColor.xyz, 1.0);",
+				"vec4 diffuse = varyingDiffuse;",
 				"vec4 color = ambient + diffuse;",
 
 				"// gl_FragColor = color * vec4(vec3(1.0) + 0.5 * texColor.xyz, 1.0);",

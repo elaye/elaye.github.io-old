@@ -66,6 +66,11 @@ window.onload = function() {
 
 	var explosion = gui.addFolder('Explosion');
 	explosion.add(material, 'rewindSpeed', 0.5, 5.0);
+
+	var lights = gui.addFolder('Lights');
+	lights.addColor(material, 'ambientColor');
+	lights.addColor(material, 'diffuseColor1');
+	lights.addColor(material, 'diffuseColor2');
 };
 
 function onMouseMove( event ) {

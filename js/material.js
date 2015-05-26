@@ -13,11 +13,15 @@ var ExplosiveMaterial = function(){
 	// this.lateralDev = 0.25;
 	this.lateralDev = 10;
 
-	this.noisePositionScale = 2.0;
+	this.noisePositionScale = 1.4;
 	this.noiseTimeScale = 1.0;
 	this.noiseAmp = 0.2;
 
 	this.rewindSpeed = 3.0;
+
+	this.ambientColor = [0.35*255, 0.35*255, 0.40*255];
+	this.diffuseColor1 = [0.49*255, 0.61*255, 0.71*255];
+	this.diffuseColor2 = [0.71*255, 0.56*255, 0.44*255];
 
 	var uniforms = {
 		time: { type: "f", value: 0 },
@@ -40,7 +44,23 @@ var ExplosiveMaterial = function(){
 		noiseTimeScale: {type: "f", value: this.noiseTimeScale},
 		noiseAmp: {type: "f", value: this.noiseAmp},
 
-		rewindSpeed: {type: "f", value: this.rewindSpeed}
+		rewindSpeed: {type: "f", value: this.rewindSpeed},
+
+		ambientColor: {type: "v3", value: new THREE.Vector3(
+						this.ambientColor[0]/255,
+						this.ambientColor[1]/255,
+						this.ambientColor[2]/255
+					)},
+		diffuseColor1: {type: "v3", value: new THREE.Vector3(
+						this.diffuseColor1[0]/255,
+						this.diffuseColor1[1]/255,
+						this.diffuseColor1[2]/255
+					)},
+		diffuseColor2: {type: "v3", value: new THREE.Vector3(
+						this.diffuseColor2[0]/255,
+						this.diffuseColor2[1]/255,
+						this.diffuseColor2[2]/255
+					)}
 	};
 
 	this.material = new THREE.ShaderMaterial( {
@@ -100,6 +120,22 @@ var ExplosiveMaterial = function(){
 		uniforms.noiseAmp.value = this.noiseAmp;
 
 		uniforms.rewindSpeed.value = this.rewindSpeed;
+
+		uniforms.ambientColor.value = new THREE.Vector3(
+						this.ambientColor[0]/255,
+						this.ambientColor[1]/255,
+						this.ambientColor[2]/255
+					);
+		uniforms.diffuseColor1.value = new THREE.Vector3(
+						this.diffuseColor1[0]/255,
+						this.diffuseColor1[1]/255,
+						this.diffuseColor1[2]/255
+					);
+		uniforms.diffuseColor2.value = new THREE.Vector3(
+						this.diffuseColor2[0]/255,
+						this.diffuseColor2[1]/255,
+						this.diffuseColor2[2]/255
+					);	
 	}
 
 }
