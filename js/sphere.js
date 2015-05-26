@@ -5,45 +5,12 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeig
 camera.position.z = 5;
 
 var extIco = new ExtrudedIcosphere();
-var texture = new THREE.ImageUtils.loadTexture('concrete_tex2D_light.jpg');
 
 var renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setClearColor( 0xfafafa, 1);
 // renderer.gammaOutput = true;
 document.body.appendChild(renderer.domElement);
-
-
-// var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-// material.wireframe = true;
-
-// Material
-// var pinkMat = new THREE.MeshPhongMaterial({
-  // color      :  new THREE.Color("rgb(226,35,213)"),
-  // emissive   :  new THREE.Color("rgb(255,128,64)"),
-  // specular   :  new THREE.Color("rgb(255,155,255)"),
-  // shininess  :  10,
-  // shading    :  THREE.FlatShading,
-  // transparent: 1,
-  // opacity    : 1
-// });
-
-// var L1 = new THREE.PointLight( 0xffffff, 1);
-// L1.position.z = 100;
-// L1.position.y = 100;
-// L1.position.x = 100;
-// scene.add(L1);
-
-// var L2 = new THREE.PointLight( 0xffffff, 0.8);
-// L2.position.z = 200;
-// L2.position.y = 50;
-// L2.position.x = -100;
-// scene.add(L2);
-
-// THREE.ImageUtils.crossOrigin = '';
-// var texture = new THREE.ImageUtils.loadTexture('koala.jpg');
-// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-
 
 window.onload = function() {
   // var opt = new Options();

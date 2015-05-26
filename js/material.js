@@ -33,7 +33,7 @@ var ExplosiveMaterial = function(){
 		// mouseOverCnt: {type: "f", value: 0},
 		mouseOutCnt: {type: "f", value: 0},
 		reconstructCnt: {type: "f", value: 0},
-		tex: {type: "t", value: texture},
+		// tex: {type: "t", value: texture},
 
 		normalAmp: {type: "f", value: this.normalAmp},
 		lateralAmp: {type: "f", value: this.lateralAmp},
