@@ -1,14 +1,16 @@
 var shaders = {
 	"vertex": [
+			"precision highp float;",
 			shaderUtil["common"],
 			shaderUtil["distributions"],
 			shaderUtil["snoise4D"],
 			shaderUtil["quaternionOperations"],
 			"uniform vec3 intPos;",
-			"uniform vec3 lightPos;",
+			"uniform vec3 lightPos1;",
+			"uniform vec3 lightPos2;",
 			"uniform float time;",
 			"uniform float bMouseOver;",
-			"uniform float mouseOverCnt;",
+			// "uniform float mouseOverCnt;",
 			"uniform float mouseOutCnt;",
 			"uniform float reconstructCnt;",
 
@@ -17,25 +19,35 @@ var shaders = {
 			"uniform float normalDev;",
 			"uniform float lateralDev;",
 
+			"uniform float noisePositionScale;",
+			"uniform float noiseTimeScale;",
+			"uniform float noiseAmp;",
+
+			"uniform float rewindSpeed;",
+
 			"attribute vec3 faceCenter;",
 			"attribute vec3 faceNormal;",
 
 			"varying vec4 varyingDiffuse;",
 			"varying vec2 varyingUv;",
 
+			"float easeOut(float x, float a){",
+				"float t = 1.0 - exp(-x * a);",
+				"return t;",
+			"}",
+
 			"void displace(float d, inout vec3 p){",
-				"float rec = 1.0 - exp(-reconstructCnt*3.0);",
-				"//float normalDisAmp = bMouseOver * rec * normalAmp * exp(-d * d * 5.0);",
+				"float rec = easeOut(reconstructCnt, rewindSpeed);",
 				"float normalDisAmp = bMouseOver * rec * normalAmp * gauss(normalDev, d);",
 				"vec3 normalDis = normalDisAmp * faceNormal;",
 
 				"vec3 noiseDir = normalize(p);",
-				// "vec3 noise = 0.2 * snoise(vec4(50.0 * p, 1.0 * mouseOutCnt * (1.0 - reconstructCnt))) * noiseDir;",
-				"vec3 noise = 0.2 * snoise(vec4(50.0 * p.xy, 1.0 * mouseOutCnt, rec)) * noiseDir;",
-				// "vec3 noise = 0.2 * snoise(vec4(50.0 * p, 1.0 * mouseOutCnt)) * noiseDir;",
+				"vec3 noise = noiseAmp * snoise(vec4(noisePositionScale * p.xy, noiseTimeScale * mouseOutCnt, noiseTimeScale * rec)) * noiseDir;",
 
-				"//float lateralDisAmp = bMouseOver * rec * lateralAmp * exp(-d * d * 5.0);",
-				"float lateralDisAmp = bMouseOver * rec * lateralAmp *gauss(lateralDev, d);",
+				// "float lateralDisAmp = bMouseOver * rec * lateralAmp * exp(-d * d * 5.0);",
+				// "float lateralDisAmp = bMouseOver * rec * lateralAmp *gauss(lateralDev, d);",
+				// "float lateralDisAmp = bMouseOver * rec * lateralAmp * exp(-d * lateralDev);",
+				"float lateralDisAmp = bMouseOver * rec * lateralAmp * exp( (normalDisAmp - 1.0) * lateralDev);",
 				"vec3 lateralDir = cross(-intPos, cross(intPos, faceCenter));",
 				"vec3 lateralDis = lateralDisAmp * lateralDir;",
 
@@ -78,7 +90,8 @@ var shaders = {
 				"displace(d, newPosition);",
 				"gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);",
 
-				"varyingDiffuse = vec4(0.49, 0.61, 0.71, 1.0) * clamp(dot(normal, normalize(lightPos)), 0.0, 1.0);",
+				"varyingDiffuse = vec4(0.49, 0.61, 0.71, 1.0) * clamp(dot(normal, normalize(lightPos1)), 0.0, 1.0);",
+				"varyingDiffuse += vec4(0.71, 0.56, 0.44, 1.0) * clamp(dot(normal, normalize(lightPos2)), 0.0, 1.0);",
 				"varyingUv = uv;",
 			"}"
 	].join("\n"),
@@ -102,6 +115,7 @@ var shaders = {
 				"vec4 color = ambient + diffuse;",
 
 				"// gl_FragColor = color * vec4(vec3(1.0) + 0.5 * texColor.xyz, 1.0);",
+				// "color.w = 0.9;",
 				"gl_FragColor = color;",
 			"}"
 	].join("\n")

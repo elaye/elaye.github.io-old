@@ -9,10 +9,6 @@ var Timer = function(){
 		this.isOn = true;
 	};
 
-	// this.isOn = function(){
-		// return isOn;
-	// };
-
 	this.getTimeLeft = function(){
 		if(!this.isOn){
 			return 0;
