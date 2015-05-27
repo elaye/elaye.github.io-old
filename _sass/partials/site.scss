@@ -1,9 +1,11 @@
 .site-header {
 	border-top: none;
-	background-color: rgba(254, 254, 254, 0.95);
-	-moz-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
-	-webkit-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
-	box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
+	// background-color: rgba(254, 254, 254, 0.95);
+	background-color: $lighter-grey;
+	// -moz-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
+	// -webkit-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
+	// box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
+	height: 60;
 }
 
 .site-title {
@@ -17,30 +19,32 @@
 
 .site-footer {
 	background-color: rgba(254, 254, 254, 0.8);
-	-moz-box-shadow: -3px -3px 2px rgba(210, 210, 255, 1.0);
-	-webkit-box-shadow: -3px -3px 2px rgba(210, 210, 255, 1.0);
-	box-shadow: -3px -3px 2px rgba(210, 210, 255, 1.0);
+	// -moz-box-shadow: -3px -3px 2px rgba(210, 210, 255, 1.0);
+	// -webkit-box-shadow: -3px -3px 2px rgba(210, 210, 255, 1.0);
+	// box-shadow: -3px -3px 2px rgba(210, 210, 255, 1.0);
 }
 
 .page-content {
-	margin-top: 50px;
-	background-color: rgba(250, 250, 250, 0.8);
+	// margin-top: 50px;
+	// background-color: rgba(250, 250, 250, 0.8);
+	background-color: $lighter-grey;
 	> .wrapper {
 		background-color: rgba(255, 255, 255, 0.9);
 		padding: 30px;
 		padding-top: 20px;
-		border: solid 1px #DDD;
-		-moz-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
-		-webkit-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
-		box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
+		// border: solid 1px #DDD;
+		// -moz-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
+		// -webkit-box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
+		// box-shadow: 3px 3px 4px rgba(127, 127, 170, 1.0);
 	}
 }
 
 .logo {
 	float: left;
-	margin-left: -115px;
+	// margin-left: -115px;
+	margin-top: 5px;
 	> img {
-		height: 3.5rem;
+		height: 50px;
 	}
 }
 
@@ -74,12 +78,17 @@ a {
 		color: $blue;
 	}
 	.site-nav &.page-link {
+		// line-height: 50px;
+		padding-bottom: 19px;
+		// padding-top: 30px;
+		// height: 100px;
 		font-weight: bold;
 		text-transform: uppercase;
 		color: $dark-grey;
 		transition: color 0.25s ease-in 0s;
 		&:hover{
 			color: $blue;
+			border-bottom: solid 3px $blue;
 		}
 	}
 	&.social-link{

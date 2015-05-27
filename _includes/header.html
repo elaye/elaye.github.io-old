@@ -6,23 +6,24 @@
 <!--     <div class="logo"><a href="{{ site.url }}"><img src="/img/logo_transparent_contrast_mirror_small.png"></a></div> -->
 
     <a href="{{ site.baseurl }}/">
-      <div class="logo"><img src="/img/logo_transparent_contrast_mirror_small.png"></div>
-      <div class="site-title">
+      <!-- <div class="logo"><img src="/img/logo_transparent_contrast_mirror_small.png"></div> -->
+      <div class="logo"><img src="/img/sphere_small.png"></div>
+<!--       <div class="site-title">
         {{ site.title }}
         <div class="site-description">{{ site.description }}</div>
-      </div>
+      </div> -->
     </a>
 
     <nav class="site-nav">
 
 
-      <div class="trigger">
+      <!-- <div class="trigger"> -->
         {% for page in site.pages %}
           {% if page.title %}
           <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
           {% endif %}
         {% endfor %}
-      </div>
+      <!-- </div> -->
     </nav>
 
   </div>

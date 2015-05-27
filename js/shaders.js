@@ -5,6 +5,7 @@ var shaders = {
 			shaderUtil["distributions"],
 			shaderUtil["snoise4D"],
 			shaderUtil["quaternionOperations"],
+			"uniform vec3 center;",
 			"uniform vec3 intPos;",
 			"uniform vec3 lightPos1;",
 			"uniform vec3 lightPos2;",
@@ -88,7 +89,7 @@ var shaders = {
 
 			"void main(){",
 				"vec3 newPosition = position;",
-				"float d = distance(normal, intPos);",
+				"float d = distance(normal, intPos - center);",
 				"randomRotate(d, newPosition);",
 				"displace(d, newPosition);",
 				"gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);",

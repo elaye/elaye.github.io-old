@@ -4,7 +4,8 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 100 );
 camera.position.z = 5;
 
-var extIco = new ExtrudedIcosphere();
+var center = new THREE.Vector3(0, 0, 0);
+var extIco = new ExtrudedIcosphere(center);
 
 var renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -21,9 +22,7 @@ window.onload = function() {
 	var displacement = gui.addFolder('Displacement');
 	displacement.add(material, 'normalAmp', 0, 1000);
 	displacement.add(material, 'normalDev', 0.2, 0.4);
-	// displacement.add(material, 'lateralAmp', 0, 1000);
 	displacement.add(material, 'lateralAmp', 0, 1);
-	// displacement.add(material, 'lateralDev', 0.2, 0.4);
 	displacement.add(material, 'lateralDev', 0, 20);
 
 	var noise = gui.addFolder('Noise');
@@ -44,19 +43,19 @@ function onMouseMove( event ) {
        // calculate mouse position in normalized device coordinates
        // (-1 to +1) for both components
        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-       mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;               
+       mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
 }
 
 document.addEventListener('mousemove', onMouseMove, false);
 
-var material = new ExplosiveMaterial();
+var material = new ExplosiveMaterial(center);
 var mesh = new THREE.Mesh(extIco, material.material);
 scene.add(mesh);
 
 var render = function () {
 	requestAnimationFrame(render);
-	// update the picking ray with the camera and mouse position	
-	raycaster.setFromCamera(mouse, camera);	
+	// update the picking ray with the camera and mouse position
+	raycaster.setFromCamera(mouse, camera);
 
 	// calculate objects intersecting the picking ray
 	// var intersects = raycaster.intersectObjects(scene.children);

@@ -1,4 +1,4 @@
-var ExplosiveMaterial = function(){
+var ExplosiveMaterial = function(center){
 
 	this.mouseOver = false;
 	this.intPos = new THREE.Vector3();
@@ -16,19 +16,29 @@ var ExplosiveMaterial = function(){
 	this.noisePositionScale = 1.4;
 	this.noiseTimeScale = 1.0;
 	this.noiseAmp = 0.2;
+	// this.noiseAmp = 0;
 
 	this.rewindSpeed = 3.0;
 
-	this.ambientColor = [0.35*255, 0.35*255, 0.40*255];
-	this.diffuseColor1 = [0.49*255, 0.61*255, 0.71*255];
-	this.diffuseColor2 = [0.71*255, 0.56*255, 0.44*255];
+	// this.ambientColor = [0.35*255, 0.35*255, 0.40*255];
+	// this.diffuseColor1 = [0.49*255, 0.61*255, 0.71*255];
+	// this.diffuseColor2 = [0.71*255, 0.56*255, 0.44*255];
+	// this.ambientColor = [89, 89, 102];
+	// this.diffuseColor1 = [125, 156, 181];
+	// this.diffuseColor2 = [181, 143, 112];
+	this.ambientColor = [79, 79, 92];
+	this.diffuseColor1 = [97, 132, 156];
+	this.diffuseColor2 = [181, 143, 112];
 
 	var uniforms = {
 		time: { type: "f", value: 0 },
 		resolution: { type: "v2", value: new THREE.Vector2(512.0, 512.0) },
+		center: {type: "v3", value: center},
 		intPos: {type: "v3", value: this.intPos },
-		lightPos1: {type: "v3", value: new THREE.Vector3(2.0, 0.5, 1.0)},
-		lightPos2: {type: "v3", value: new THREE.Vector3(-2.0, 1.0, 1.0)},
+		// lightPos1: {type: "v3", value: new THREE.Vector3(2.0, 0.5, 1.0)},
+		// lightPos2: {type: "v3", value: new THREE.Vector3(-2.0, 1.0, 1.0)},
+		lightPos1: {type: "v3", value: new THREE.Vector3(2.6, 1.9, 1.7)},
+		lightPos2: {type: "v3", value: new THREE.Vector3(-3.2, 2.6, 1.1)},
 		bMouseOver: {type: "f", value: 0},
 		// mouseOverCnt: {type: "f", value: 0},
 		mouseOutCnt: {type: "f", value: 0},
