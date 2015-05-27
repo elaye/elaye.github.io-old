@@ -35,7 +35,7 @@ html, body {
 nav.site-nav {
 	position: absolute;
 	bottom: 0%;
-	left: 60%;
+	right: 10%;
 	.page-link {
 		font-weight: bold;
 		text-transform: uppercase;
@@ -45,9 +45,24 @@ nav.site-nav {
 			color: $blue;
 			border-top: solid 2px $blue;
 		}
+		&:not(:first-child) {
+			margin-left: 40px;
+		}
 	}
 }
 
+.social {
+	position: absolute;
+	bottom: 0%;
+	left: 15px;
+}
+
+a.social-link {
+	margin-bottom: 15px;
+	&:not(:first-child){
+		margin-left: 10px;
+	}
+}
 // .site-nav &.page-link {
 // 	font-weight: bold;
 // 	text-transform: uppercase;

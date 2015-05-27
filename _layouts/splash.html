@@ -37,6 +37,44 @@
 					{% endfor %}
 			</nav>
 
+			<div class="social">
+
+					{% if site.vimeo_userid %}
+						<a href="https://vimeo.com/{{ site.vimeo_userid }}" target="_blank" class="social-link">
+							<i class="fa fa-vimeo-square fa-2x"></i>
+						</a>
+					{% endif %}
+
+					{% if site.email %}
+						<a href="mailto:{{ site.email }}" class="social-link">
+							<i class="fa fa-envelope-square fa-2x"></i>
+						</a>
+					{% endif %}
+
+					{% if site.github_username %}
+						<a href="https://github.com/{{ site.github_username }}" target="_blank" class="social-link">
+							<i class="fa fa-github-square fa-2x"></i>
+						</a>
+					{% endif %}
+
+					{% if site.twitter_username %}
+						<a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" class="social-link">
+							<i class="fa fa-twitter-square fa-2x"></i>
+						</a>
+					{% endif %}
+
+					{% if site.linkedin_username %}
+						<a href="https://www.linkedin.com/pub/{{ site.linkedin_username }}" target="_blank" class="social-link">
+							<i class="fa fa-linkedin-square fa-2x"></i>
+						</a>
+					{% endif %}
+
+					{% if site.rss %}
+						<a href="{{ "/feed.xml" | prepend: site.baseurl }}" target="_blank" class="social-link">
+							<i class="fa fa-rss-square fa-2x"></i>
+						</a>
+					{% endif %}
+			</div>
 		</div>
 
 

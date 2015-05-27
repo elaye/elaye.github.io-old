@@ -45,7 +45,7 @@ var shaders = {
 				"float normalDisAmp = bMouseOver * rec * normalAmp * gauss(normalDev, d);",
 				"vec3 normalDis = normalDisAmp * faceNormal;",
 
-				"vec3 noiseDir = normalize(p);",
+				"vec3 noiseDir = normalize(p - center);",
 				"vec3 noise = noiseAmp * snoise(vec4(noisePositionScale * p.xy, noiseTimeScale * mouseOutCnt, noiseTimeScale * rec)) * noiseDir;",
 
 				// "float lateralDisAmp = bMouseOver * rec * lateralAmp * exp(-d * d * 5.0);",
