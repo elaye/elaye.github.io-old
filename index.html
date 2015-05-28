@@ -1,22 +1,22 @@
 ---
 layout: splash
 ---
-<!-- <h1 class="post-title">Code</h1>
-<hr>
-<div class="home">
 
-	<ul class="post-list">
-		{% for post in site.posts %}
-			<li>
-				<a href="{{ post.url | prepend: site.baseurl }}">
-					<div class="hero" style="background-image: url(/img/posts/{{ post.header-img }});">
-						<div class="title">{{ post.title }}
-							<span>{{ post.date | date: "%b %-d, %Y" }}</span>
-						</div>
-					</div>
-				</a>
-			</li>
-		{% endfor %}
-	</ul>
+<div id="title">
+	<div id="name">Elie GENARD</div>
+	<div id="sub-name">Creative developper</div>
+</div>
 
-</div> -->
+{% include navigation.html %}
+
+{% include social.html %}
+
+<div id="sphere"></div>
+
+<script type="text/javascript">
+	(function(){
+		ExplodingSphere(document.getElementById('sphere'), -2.0, 0, 0);
+	})();
+</script>
+
+{% include analytics.html %}

@@ -4,32 +4,8 @@
 	{% include head_splash.html %}
 
 	<body>
-		<script src="js/three.min.js"></script>
-		<!-- <script src="js/dat.gui.min.js"></script> -->
-		<script src="js/util.js"></script>
-		<script src="js/material.js"></script>
-		<script src="js/geometry.js"></script>
-		<script src="js/shaders.js"></script>
-		<script src="js/sphere1.js"></script>
 
-		<div id="title">
-			<div id="name">Elie GENARD</div>
-			<div id="sub-name">Creative developper</div>
-		</div>
-
-		{% include navigation.html %}
-
-		{% include social.html %}
-
-		<div id="sphere"></div>
-
-		<script type="text/javascript">
-			(function(){
-				ExplodingSphere(document.getElementById('sphere'), -2.0, 0, 0);
-			})();
-		</script>
-
-		{% include analytics.html %}
+		{{ content }}
 
 	</body>
 
