@@ -81,11 +81,19 @@ a {
 	&.social-link{
 		display: block;
 		float: left;
-		margin-left: -webkit-calc( (800px / 7) - 4em);
-		margin-left: calc( (800px / 7) - 4em);
+		// margin-left: -webkit-calc( (800px / 7) - 4em);
+		// margin-left: calc( (800px / 7) - 4em);
+		&:first-child{
+			// 5 * 3em + 6 * 3em 
+			margin-left: -webkit-calc( (740px - 5*3em - 6*3em) / 2);
+			margin-left: calc( (740px - 5*3em - 6*3em) / 2);
+		}
+		&:not(:first-child){
+			margin-left: 3em;
+		}
 		color: $grey;
 		i {
-			font-size: 5em;
+			font-size: 3em;
 			transition: all 0.5s ease-in;
 		}
 		&:hover i{
