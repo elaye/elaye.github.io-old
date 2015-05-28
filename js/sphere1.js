@@ -34,7 +34,7 @@ var ExplodingSphere = function(canvas, x, y, z){
 	document.addEventListener('mousemove', onMouseMove, false);
 	window.addEventListener('resize', onResize, true);
 
-	var material = new ExplosiveMaterial(center);
+	this.material = new ExplosiveMaterial(center);
 	var mesh = new THREE.Mesh(extIco, material.material);
 	scene.add(mesh);
 
@@ -53,4 +53,5 @@ var ExplodingSphere = function(canvas, x, y, z){
 	};
 
 	render();
+	return this;
 }

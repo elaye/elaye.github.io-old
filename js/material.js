@@ -8,9 +8,7 @@ var ExplosiveMaterial = function(center){
 
 	this.normalAmp = 300.0;
 	this.normalDev = 0.3;
-	// this.lateralAmp = 600.0;
 	this.lateralAmp = 1;
-	// this.lateralDev = 0.25;
 	this.lateralDev = 10;
 
 	this.noisePositionScale = 1.4;
@@ -20,12 +18,6 @@ var ExplosiveMaterial = function(center){
 
 	this.rewindSpeed = 3.0;
 
-	// this.ambientColor = [0.35*255, 0.35*255, 0.40*255];
-	// this.diffuseColor1 = [0.49*255, 0.61*255, 0.71*255];
-	// this.diffuseColor2 = [0.71*255, 0.56*255, 0.44*255];
-	// this.ambientColor = [89, 89, 102];
-	// this.diffuseColor1 = [125, 156, 181];
-	// this.diffuseColor2 = [181, 143, 112];
 	this.ambientColor = [79, 79, 92];
 	this.diffuseColor1 = [97, 132, 156];
 	this.diffuseColor2 = [181, 143, 112];
@@ -35,15 +27,11 @@ var ExplosiveMaterial = function(center){
 		resolution: { type: "v2", value: new THREE.Vector2(512.0, 512.0) },
 		center: {type: "v3", value: center},
 		intPos: {type: "v3", value: this.intPos },
-		// lightPos1: {type: "v3", value: new THREE.Vector3(2.0, 0.5, 1.0)},
-		// lightPos2: {type: "v3", value: new THREE.Vector3(-2.0, 1.0, 1.0)},
 		lightPos1: {type: "v3", value: new THREE.Vector3(2.6, 1.9, 1.7)},
 		lightPos2: {type: "v3", value: new THREE.Vector3(-3.2, 2.6, 1.1)},
 		bMouseOver: {type: "f", value: 0},
-		// mouseOverCnt: {type: "f", value: 0},
 		mouseOutCnt: {type: "f", value: 0},
 		reconstructCnt: {type: "f", value: 0},
-		// tex: {type: "t", value: texture},
 
 		normalAmp: {type: "f", value: this.normalAmp},
 		lateralAmp: {type: "f", value: this.lateralAmp},
@@ -84,7 +72,6 @@ var ExplosiveMaterial = function(center){
 	});
 
 	this.material.side = THREE.DoubleSide;
-	// this.material.lights = true;
 
 	this.setIntersection = function(intersects){
 		if(intersects.length > 0){

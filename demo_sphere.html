@@ -1,0 +1,52 @@
+---
+layout: splash
+---
+
+<style>
+	body { margin: 0; }
+	canvas { position: absolute; z-index: 1; width: 100%; height: 100%; background-color: #F3F3F3; }
+	#gui {position: fixed; z-index: 2; top: 0; left: 0;}
+	.home-icon {position: fixed; z-index: 3; bottom: 0px; left: 15px; font-size: 2em; }
+</style>
+
+<div id="gui"></div>
+<script src="js/dat.gui.min.js"></script>
+
+<div id="sphere"></div>
+
+<div class="home-icon">
+	<a href="/index.html"><i class="fa fa-home"></i></a>
+</div>
+
+<script type="text/javascript">
+	(function(){
+
+		window.onload = function() {
+			var sphere = ExplodingSphere(document.getElementById('sphere'), 0, 0, 0);
+			var gui = new dat.GUI({ autoPlace: false });
+			var guiContainer = document.getElementById('gui');
+			guiContainer.appendChild(gui.domElement);
+
+			var opt = sphere.material; 
+
+			var displacement = gui.addFolder('Displacement');
+			displacement.add(opt, 'normalAmp', 0, 1000);
+			displacement.add(opt, 'normalDev', 0.2, 0.4);
+			displacement.add(opt, 'lateralAmp', 0, 1);
+			displacement.add(opt, 'lateralDev', 0, 20);
+
+			var noise = gui.addFolder('Noise');
+			noise.add(opt, 'noisePositionScale', 0.1, 3.0);
+			noise.add(opt, 'noiseTimeScale', 0.1, 10.0);
+			noise.add(opt, 'noiseAmp', 0.01, 1.0);
+
+			var explosion = gui.addFolder('Explosion');
+			explosion.add(opt, 'rewindSpeed', 0.5, 5.0);
+
+			var lights = gui.addFolder('Lights');
+			lights.addColor(opt, 'ambientColor');
+			lights.addColor(opt, 'diffuseColor1');
+			lights.addColor(opt, 'diffuseColor2');
+		};
+	})();
+</script>
