@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Splash screen"
+title:  "Splash screen interactive animation"
 date:   2015-05-27 16:55:00
 categories: Three.js
 header-img: "splash/header.png"
