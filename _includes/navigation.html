@@ -1,15 +1,7 @@
-<div class="menu">
-	<nav class="nav">
-		<ul>
-			{% for node in site.pages reversed %}
-				{% if node.title %}
-					{% if page.url == node.url %}
-						<li><a class="page-link active" href="{{ node.url | prepend: site.baseurl }}">{{ node.title }}</a></li>
-					{% else %}
-						<li><a class="page-link" href="{{ node.url | prepend: site.baseurl }}">{{ node.title }}</a></li>
-					{% endif %}
-				{% endif %}
-			{% endfor %}
-		</ul>
-	</nav>
-</div>
+<nav class="site-nav">
+	{% for page in site.pages %}
+		{% if page.title %}
+			<a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+		{% endif %}
+	{% endfor %}
+</nav>

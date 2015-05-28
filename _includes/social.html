@@ -1,0 +1,37 @@
+<div class="social">
+	{% if site.vimeo_userid %}
+		<a href="https://vimeo.com/{{ site.vimeo_userid }}" target="_blank" class="social-link">
+			<i class="fa fa-vimeo-square"></i>
+		</a>
+	{% endif %}
+
+	{% if site.email %}
+		<a href="mailto:{{ site.email }}" class="social-link">
+			<i class="fa fa-envelope-square"></i>
+		</a>
+	{% endif %}
+
+	{% if site.github_username %}
+		<a href="https://github.com/{{ site.github_username }}" target="_blank" class="social-link">
+			<i class="fa fa-github-square"></i>
+		</a>
+	{% endif %}
+
+	{% if site.twitter_username %}
+		<a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" class="social-link">
+			<i class="fa fa-twitter-square"></i>
+		</a>
+	{% endif %}
+
+	{% if site.linkedin_username %}
+		<a href="https://www.linkedin.com/pub/{{ site.linkedin_username }}" target="_blank" class="social-link">
+			<i class="fa fa-linkedin-square"></i>
+		</a>
+	{% endif %}
+
+	{% if site.rss %}
+		<a href="{{ "/feed.xml" | prepend: site.baseurl }}" target="_blank" class="social-link">
+			<i class="fa fa-rss-square"></i>
+		</a>
+	{% endif %}
+</div>
