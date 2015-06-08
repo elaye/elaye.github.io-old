@@ -1,7 +1,7 @@
+// To clean and refactor
 var ExtrudedIcosphere = function(c){
 	var center = new THREE.Vector3(c.x, c.y, c.z);
 	var ico = new THREE.IcosahedronGeometry(2, 4);
-	// var extIco = [];
 
 	var indices = new Uint16Array(ico.faces.length * 3);
 
@@ -50,8 +50,6 @@ var ExtrudedIcosphere = function(c){
 		faceNormals[9*i+7] = ico.faces[i].normal.y;
 		faceNormals[9*i+8] = ico.faces[i].normal.z;
 	}
-	// console.log(faceNormals.length);
-	// ico.computeFaceNormals();
 
 	var bufferGeometry = new THREE.BufferGeometry();
 
@@ -60,6 +58,6 @@ var ExtrudedIcosphere = function(c){
 	bufferGeometry.addAttribute("normal", new THREE.BufferAttribute(faceNormals, 3));
 	bufferGeometry.addAttribute("faceCenter", new THREE.BufferAttribute(faceCenters, 3));
 	bufferGeometry.addAttribute("faceNormal", new THREE.BufferAttribute(faceNormals, 3));
-	// bufferGeometry.fromGeometry(ico);
+
 	return bufferGeometry;
 }
