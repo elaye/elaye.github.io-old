@@ -1,3 +1,6 @@
+// For the demo page
+// To merge with sphere1.js
+
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2(-window.innerWidth/2, window.innerHeight/2);
 var scene = new THREE.Scene();
