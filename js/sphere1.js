@@ -1,3 +1,6 @@
+// For the landing page
+// To merge with sphere.js
+
 var ExplodingSphere = function(canvas, x, y, z){
 	var center = new THREE.Vector3(x, y, z);
 	var width = window.innerWidth;
