@@ -1,0 +1,89 @@
+---
+layout: generative
+title:  "Tori"
+date:   2015-07-03 11:00:00
+categories: generative
+name: "tori"
+tags: [generative, openframeworks]
+---
+
+<style>
+.gelem {
+	width: 260px;
+	height: 260px;
+	margin-left: calc(50% - 130px);
+}
+</style>
+
+<div class="grid">
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/0.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/0_thumb.png" alt="tori">
+		</a>
+	</div>
+
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/1.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/1_thumb.png" alt="tori">
+		</a>
+	</div>
+
+</div>
+
+<br>
+
+<div class="grid">
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/2.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/2_thumb.png" alt="tori">
+		</a>
+	</div>
+
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/3.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/3_thumb.png" alt="tori">
+		</a>
+	</div>
+</div>
+
+<br>
+
+<div class="grid">
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/4.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/4_thumb.png" alt="tori">
+		</a>
+	</div>
+
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/5.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/5_thumb.png" alt="tori">
+		</a>
+	</div>
+</div>
+
+<br>
+
+<div class="grid">
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/6.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/6_thumb.png" alt="tori">
+		</a>
+	</div>
+
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/7.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/7_thumb.png" alt="tori">
+		</a>
+	</div>
+</div>
+
+<br>
+
+<div class="grid">
+	<div class="col-1-2">
+		<a class="gelem" href="/img/generatives/tori/8.png" data-lightbox="tori" alt="tori">
+			<img src="/img/generatives/tori/8_thumb.png" alt="tori">
+		</a>
+	</div>
+</div>

@@ -9,7 +9,7 @@ permalink: /code/
 	<!-- <h1 class="page-heading">Posts</h1> -->
 
 	<ul class="post-list">
-		{% for post in site.posts %}
+		{% for post in site.categories.code %}
 			<li>
 				<a href="{{ post.url | prepend: site.baseurl }}">
 					<div class="hero" style="background-image: url(/img/posts/{{ post.header-img }});">

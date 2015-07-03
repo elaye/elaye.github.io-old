@@ -1,0 +1,38 @@
+---
+layout: page
+title: Generative
+permalink: /generative/
+---
+<div class="generative">
+
+	<!-- <h1 class="page-heading">Posts</h1> -->
+
+	<!-- <ul class="generative-list"> -->
+		{% for generative in site.categories.generative %}
+			{% assign i = forloop.index | modulo: 3 %}
+			{% if i == 0 %}
+				<div class="grid">
+			{% endif %}
+			<!-- <li> -->
+				<div class="col-1-3">
+				<a href="{{ generative.url | prepend: site.baseurl }}">
+					<!-- <div class="hero" style="background-image: url(/img/posts/{{ post.header-img }});"> -->
+					<div class="hero generative-header" style="background-image: url(/img/generatives/{{ generative.name }}/thumbnail.png);">
+						<div class="title">{{ generative.title }}
+							<span>{{ post.date | date: "%b %-d, %Y" }}</span>
+						</div>
+					</div>
+						<!-- <div class="title">{{ generative.title }} -->
+							<!-- <span>{{ generative.date | date: "%b %-d, %Y" }}</span> -->
+						<!-- </div> -->
+					<!-- </div> -->
+				</a>
+				</div>
+			{% if i == 0 %}
+				</div>
+			{% endif %}
+			<!-- </li> -->
+		{% endfor %}
+	<!-- </ul> -->
+
+</div>
